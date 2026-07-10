@@ -16,6 +16,18 @@ export default function AdminDashboard() {
   
   // Settings State
   const [showApiKey, setShowApiKey] = useState(false);
+  
+  // Merchant View State
+  const [activeMerchantTab, setActiveMerchantTab] = useState('menunggu');
+  const [selectedMerchantChat, setSelectedMerchantChat] = useState('M-0421');
+
+  const merchantData = [
+    { id: 'M-0421', name: 'Batik Permata Ratu', date: '10 Jul 2024', owner: 'Ibu Ratna Sari', phone: '0812-3456-7890', category: 'Fashion', city: 'Yogyakarta', completeness: 95, status: 'Menunggu' },
+    { id: 'M-0422', name: 'Warung Organik Pak Budi', date: '10 Jul 2024', owner: 'Budi Santoso', phone: '0815-9876-5432', category: 'Kuliner', city: 'Solo', completeness: 78, status: 'Revisi' },
+    { id: 'M-0423', name: 'Herbal Nusantara', date: '9 Jul 2024', owner: 'Dewi Kartika', phone: '0857-1234-5678', category: 'Herbal', city: 'Semarang', completeness: 100, status: 'Menunggu' },
+    { id: 'M-0424', name: 'Studio Kerajinan Tangan', date: '9 Jul 2024', owner: 'Ahmad Fauzi', phone: '0878-4567-8901', category: 'Kerajinan', city: 'Bandung', completeness: 88, status: 'Menunggu' },
+    { id: 'M-0425', name: 'Kopi Gunung Merapi', date: '8 Jul 2024', owner: 'Slamet Riyadi', phone: '0819-2345-6789', category: 'Kuliner', city: 'Magelang', completeness: 100, status: 'Disetujui' },
+  ];
 
   // Interactive Chart State
   const [activeChartPoint, setActiveChartPoint] = useState(null);
@@ -82,7 +94,7 @@ export default function AdminDashboard() {
               <span>Overview</span>
             </div>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'merchants' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveView('merchants'); }}>
             <div className="nav-item-left">
               <Store size={20} className="nav-icon" />
               <span>Merchant</span>
@@ -664,7 +676,7 @@ export default function AdminDashboard() {
                   <div className="list-item-left">
                     <div className="item-avatar">B</div>
                     <div className="item-info">
-                      <div className="item-title">Batik Sekar Jaya</div>
+                      <div className="item-title">Batik Permata Ratu</div>
                       <div className="item-subtitle">Fashion · Yogyakarta</div>
                     </div>
                   </div>
@@ -750,6 +762,208 @@ export default function AdminDashboard() {
             </div>
           </div>
             </>
+          ) : activeView === 'merchants' ? (
+            <div className="merchants-view animate-fade-in">
+              <div className="merchant-header-section">
+                <div>
+                  <h2 className="merchant-page-title">Manajemen Merchant</h2>
+                  <p className="merchant-page-subtitle">Verifikasi & kelola pendaftaran merchant via WhatsApp AI</p>
+                </div>
+                <div className="merchant-header-actions">
+                  <button className="btn-mass-reject">Tolak Massal</button>
+                  <button className="btn-mass-approve"><CheckCircle2 size={16} /> Setujui Massal</button>
+                </div>
+              </div>
+
+              {/* Status Filter Cards */}
+              <div className="merchant-status-cards">
+                <div 
+                  className={`m-status-card ${activeMerchantTab === 'menunggu' ? 'active-yellow' : ''}`}
+                  onClick={() => setActiveMerchantTab('menunggu')}
+                >
+                  <div className="m-card-number text-yellow">14</div>
+                  <div className="m-card-label text-yellow">Menunggu</div>
+                </div>
+                <div 
+                  className={`m-status-card ${activeMerchantTab === 'revisi' ? 'active-red' : ''}`}
+                  onClick={() => setActiveMerchantTab('revisi')}
+                >
+                  <div className="m-card-number text-red">3</div>
+                  <div className="m-card-label text-red">Perlu Revisi</div>
+                </div>
+                <div 
+                  className={`m-status-card ${activeMerchantTab === 'disetujui' ? 'active-green' : ''}`}
+                  onClick={() => setActiveMerchantTab('disetujui')}
+                >
+                  <div className="m-card-number text-green">28</div>
+                  <div className="m-card-label text-green">Disetujui</div>
+                </div>
+                <div 
+                  className={`m-status-card ${activeMerchantTab === 'semua' ? 'active-neutral' : ''}`}
+                  onClick={() => setActiveMerchantTab('semua')}
+                >
+                  <div className="m-card-number">2847</div>
+                  <div className="m-card-label">Total Merchant</div>
+                </div>
+              </div>
+
+              {/* Merchant Table */}
+              <div className="merchant-table-container">
+                <table className="merchant-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: '40px' }}><input type="checkbox" /></th>
+                      <th>ID</th>
+                      <th>Nama Usaha</th>
+                      <th>Pemilik</th>
+                      <th>Kategori</th>
+                      <th>Kota</th>
+                      <th>Kelengkapan</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {merchantData.map(m => (
+                      <tr key={m.id}>
+                        <td><input type="checkbox" /></td>
+                        <td className="m-id-cell">{m.id}</td>
+                        <td>
+                          <div className="m-name">{m.name}</div>
+                          <div className="m-date">{m.date}</div>
+                        </td>
+                        <td>
+                          <div className="m-owner">{m.owner}</div>
+                          <div className="m-phone" style={{ fontFamily: 'monospace' }}>{m.phone}</div>
+                        </td>
+                        <td>
+                          <span className="m-category-badge">{m.category}</span>
+                        </td>
+                        <td className="m-city">{m.city}</td>
+                        <td>
+                          <div className="m-completeness-wrapper">
+                            <div className="m-progress-bar">
+                              <div className={`m-progress-fill ${m.completeness === 100 ? 'bg-green' : m.completeness >= 90 ? 'bg-green-dark' : 'bg-orange'}`} style={{ width: `${m.completeness}%` }}></div>
+                            </div>
+                            <span className="m-completeness-text">{m.completeness}%</span>
+                          </div>
+                        </td>
+                        <td>
+                          <span className={`m-status-badge ${m.status.toLowerCase()}`}>{m.status}</span>
+                        </td>
+                        <td>
+                          <div className="m-action-btns">
+                            <button className="btn-m-approve">Setujui</button>
+                            <button className="btn-m-revise">Revisi</button>
+                            <button className="btn-m-view" onClick={() => setSelectedMerchantChat(m.id)}><Eye size={14}/></button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Chat Preview Section */}
+              {selectedMerchantChat && (
+                <div className="chat-preview-section">
+                  <div className="chat-preview-header-title">
+                    <Bot size={18} color="#94a3b8"/>
+                    <h3>Preview Percakapan WhatsApp AI: {merchantData.find(m => m.id === selectedMerchantChat)?.name || 'Batik Permata Ratu'}</h3>
+                  </div>
+                  
+                  <div className="wa-chat-container">
+                    <div className="wa-chat-header">
+                      <span>AI Merchant Onboarding - Saudagar UII</span>
+                    </div>
+                    <div className="wa-chat-body">
+                      <div className="chat-bubble incoming">
+                        <span className="chat-sender">Saudagar UII AI</span>
+                        <div className="chat-text">
+                          Halo! Selamat datang di Saudagar UII Marketplace 🎉<br/>
+                          Saya AI asisten untuk membantu registrasi toko Anda.<br/>
+                          Boleh saya tau nama usaha Anda?
+                        </div>
+                        <span className="chat-meta">10:41</span>
+                      </div>
+                      
+                      <div className="chat-bubble outgoing">
+                        <div className="chat-text">
+                          {merchantData.find(m => m.id === selectedMerchantChat)?.name || 'Batik Permata Ratu'}
+                        </div>
+                        <span className="chat-meta">10:42 <span className="chat-ticks read">✓✓</span></span>
+                      </div>
+                      
+                      <div className="chat-bubble incoming">
+                        <span className="chat-sender">Saudagar UII AI</span>
+                        <div className="chat-text">
+                          Bagus! "{merchantData.find(m => m.id === selectedMerchantChat)?.name || 'Batik Permata Ratu'}", nama yang indah 🌸<br/>
+                          Sekarang, boleh cerita sedikit tentang produk yang Anda jual?
+                        </div>
+                        <span className="chat-meta">10:42</span>
+                      </div>
+                      
+                      <div className="chat-bubble outgoing">
+                        <div className="chat-text">
+                          kami jual batik tulis asli jogja, ada berbagai motif, harga mulai 150rb sampe 500rb
+                        </div>
+                        <span className="chat-meta">10:43 <span className="chat-ticks read">✓✓</span></span>
+                      </div>
+                      
+                      <div className="chat-bubble incoming">
+                        <span className="chat-sender">Saudagar UII AI</span>
+                        <div className="chat-text">
+                          Sip! Batik tulis asli Yogyakarta dengan rentang harga Rp 150.000 - Rp 500.000. Sudah saya catat ✅<br/>Bisa kirimkan foto toko atau foto salah satu produk unggulan Anda?
+                        </div>
+                        <span className="chat-meta">10:43</span>
+                      </div>
+                      
+                      <div className="chat-bubble outgoing has-image">
+                        <div className="chat-image-container">
+                           <img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Batik product" />
+                        </div>
+                        <div className="chat-text">
+                          ini foto motif mega mendung best seller di toko kami kak
+                        </div>
+                        <span className="chat-meta">10:45 <span className="chat-ticks read">✓✓</span></span>
+                      </div>
+                      
+                      <div className="chat-bubble incoming">
+                        <span className="chat-sender">Saudagar UII AI</span>
+                        <div className="chat-text">
+                          Wah, motifnya sangat rapi dan warnanya cerah! 😍<br/><br/>
+                          Langkah terakhir, mohon ketikkan alamat lengkap toko atau lokasi pengiriman produk Anda ya.
+                        </div>
+                        <span className="chat-meta">10:45</span>
+                      </div>
+                      
+                      <div className="chat-bubble outgoing">
+                        <div className="chat-text">
+                          Jalan Malioboro No. 123, Kelurahan Sosromenduran, Gedong Tengen, Kota Yogyakarta, DIY 55271
+                        </div>
+                        <span className="chat-meta">10:46 <span className="chat-ticks read">✓✓</span></span>
+                      </div>
+                      
+                      <div className="chat-bubble incoming">
+                        <span className="chat-sender">Saudagar UII AI</span>
+                        <div className="chat-text">
+                          Mantap! Alamat sudah kami verifikasi.<br/><br/>
+                          Data Anda sedang kami proses ke sistem. Mohon tunggu maksimal 1x24 jam untuk persetujuan dari Admin Saudagar UII ya. Nanti Anda akan mendapat notifikasi WhatsApp jika toko sudah aktif. Terimakasih! 🙏
+                        </div>
+                        <span className="chat-meta">10:46</span>
+                      </div>
+                      
+                      <div className="chat-bubble outgoing">
+                        <div className="chat-text">
+                          baik terimakasih bantuannya kak
+                        </div>
+                        <span className="chat-meta">10:48 <span className="chat-ticks read">✓✓</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="settings-view animate-fade-in">
               <div className="dashboard-page-header">
