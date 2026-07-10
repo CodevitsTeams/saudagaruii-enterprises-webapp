@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Heart, User, ChevronRight, Volume2, Star, Sparkles, Tag, Truck, Link2, SearchIcon, ChevronLeft, Zap, Coffee, Shirt, Scissors, Laptop, BookOpen, Wrench, Smartphone, Globe, Mail, Phone, MessageSquare, Plus, CheckCircle2 } from 'lucide-react';
 import './App.css';
+import './Figma.css';
+import FigmaHero from './components/FigmaHero';
+import FigmaCategories from './components/FigmaCategories';
+import WaBanner from './components/WaBanner';
+import FigmaInfoGrid from './components/FigmaInfoGrid';
+import ProductModal from './components/ProductModal';
+
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [paymentStep, setPaymentStep] = useState('idle'); // idle, processing, qris, success
-
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('Produk Terbaru');
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -112,49 +120,10 @@ function App() {
         </div>
       </header>
 
-      {/* Categories Nav */}
-      <nav className={`categories-nav ${scrolled ? 'glass' : ''}`} style={{ transition: 'all 0.3s' }}>
-        <div className="container nav-container">
-          <a href="#" className="nav-item active">Semua Kategori</a>
-          <a href="#" className="nav-item">Makanan & Minuman</a>
-          <a href="#" className="nav-item">Fashion</a>
-          <a href="#" className="nav-item">Kerajinan</a>
-          <a href="#" className="nav-item">Elektronik</a>
-          <a href="#" className="nav-item">Kesehatan</a>
-          <a href="#" className="nav-item">Pendidikan</a>
-          <a href="#" className="nav-item">Jasa</a>
-          <a href="#" className="nav-item">Digital</a>
-        </div>
-      </nav>
-
       {/* Main Content */}
       <main className="main-content container">
-        {/* Hero Section */}
-        <section className="hero-section animate-fade-in">
-          <div className="hero-background"></div>
-          <div className="hero-content">
-            <div className="badge badge-green hero-badge">PRO SMART UMKM</div>
-            <h1 className="hero-title">Jualan Lebih Mudah<br />Bersama Saudagar UII</h1>
-            <p className="hero-subtitle">
-              Daftar merchant via WhatsApp, upload produk dengan AI,<br />
-              dan raih lebih banyak pembeli dari seluruh Indonesia.
-            </p>
-            <div className="hero-actions">
-              <button className="btn-primary hero-btn">Mulai Berjualan</button>
-              <button className="btn-outline hero-btn">Pelajari Produk</button>
-            </div>
-
-            <div className="hero-dots">
-              <span className="dot active"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-            </div>
-          </div>
-          <div className="hero-stamp">
-            <span>Gratis<br />Daftar</span>
-          </div>
-        </section>
+        <FigmaHero />
+        <FigmaCategories />
 
         {/* Info Grid */}
         <div className="info-grid animate-fade-in delay-100">
@@ -344,7 +313,7 @@ function App() {
 
           <div className="fs-products">
             {/* Product 1 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fs1', name: 'Batik Tulis Jogja Premium', price: 420000, image: '/batik_tulis.png' })}>
               <div className="product-image-container">
                 <img src="/batik_tulis.png" alt="Batik Tulis" className="product-image" />
                 <div className="discount-tag">-15%</div>
@@ -360,11 +329,11 @@ function App() {
                   <div className="stock-fill" style={{ width: '75%' }}></div>
                 </div>
                 <p className="stock-text">Tersisa 15 buah</p>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fs1', name: 'Batik Tulis Jogja Premium', price: 420000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>+ Keranjang</button>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fs1', name: 'Batik Tulis Jogja Premium', price: 420000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>+ Keranjang</button>
               </div>
             </div>
             {/* Product 2 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fs2', name: 'Sambal Matah Asli Original', price: 25000, image: '/sambal_matah.png' })}>
               <div className="product-image-container">
                 <img src="/sambal_matah.png" alt="Sambal Matah" className="product-image" />
                 <div className="discount-tag">-20%</div>
@@ -380,11 +349,11 @@ function App() {
                   <div className="stock-fill" style={{ width: '40%' }}></div>
                 </div>
                 <p className="stock-text">Tersisa 45 buah</p>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fs2', name: 'Sambal Matah Asli Original', price: 25000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>+ Keranjang</button>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fs2', name: 'Sambal Matah Asli Original', price: 25000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>+ Keranjang</button>
               </div>
             </div>
             {/* Product 3 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fs3', name: 'Tas Anyaman Rotan Lombok', price: 115000, image: 'https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&q=80&w=400" alt="Tas" className="product-image" />
                 <div className="discount-tag">-15%</div>
@@ -400,11 +369,11 @@ function App() {
                   <div className="stock-fill" style={{ width: '90%' }}></div>
                 </div>
                 <p className="stock-text">Tersisa 3 buah</p>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fs3', name: 'Tas Anyaman Rotan Lombok', price: 115000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>+ Keranjang</button>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fs3', name: 'Tas Anyaman Rotan Lombok', price: 115000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>+ Keranjang</button>
               </div>
             </div>
             {/* Product 4 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fs4', name: 'Kopi Arabika Gayo 100ml', price: 65000, image: 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=400" alt="Kopi" className="product-image" />
                 <div className="discount-tag">-20%</div>
@@ -420,11 +389,13 @@ function App() {
                   <div className="stock-fill" style={{ width: '60%' }}></div>
                 </div>
                 <p className="stock-text">Tersisa 20 buah</p>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fs4', name: 'Kopi Arabika Gayo 100ml', price: 65000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>+ Keranjang</button>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fs4', name: 'Kopi Arabika Gayo 100ml', price: 65000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>+ Keranjang</button>
               </div>
             </div>
           </div>
         </section>
+
+        <WaBanner />
 
         {/* Produk Unggulan */}
         <section className="featured-products-section">
@@ -440,15 +411,20 @@ function App() {
           </div>
 
           <div className="filter-chips">
-            <button className="chip active">Produk Terbaru</button>
-            <button className="chip">Terlaris</button>
-            <button className="chip">Rekomendasi AI</button>
-            <button className="chip">Official Merchant</button>
+            {['Produk Terbaru', 'Terlaris', 'Rekomendasi AI', 'Official Merchant'].map((filter) => (
+              <button 
+                key={filter}
+                className={`chip ${activeFilter === filter ? 'active' : ''}`}
+                onClick={() => setActiveFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
 
           <div className="products-grid">
             {/* Featured Product 1 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp1', name: 'Kemeja Basic Pria Lengan Pendek', price: 120000, image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&q=80&w=400" alt="Baju" className="product-image" />
                 <div className="badge-tag green-tag">Terlaris</div>
@@ -464,14 +440,14 @@ function App() {
                   <span>5.0</span>
                   <span className="reviews">(125 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp1', name: 'Kemeja Basic Pria Lengan Pendek', price: 120000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp1', name: 'Kemeja Basic Pria Lengan Pendek', price: 120000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
             </div>
 
             {/* Featured Product 2 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp2', name: 'Paket Nasi Kuning Komplit', price: 35000, image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400" alt="Food" className="product-image" />
                 <div className="badge-tag yellow-tag">Rekomendasi AI</div>
@@ -487,14 +463,14 @@ function App() {
                   <span>4.8</span>
                   <span className="reviews">(89 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp2', name: 'Paket Nasi Kuning Komplit', price: 35000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp2', name: 'Paket Nasi Kuning Komplit', price: 35000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
             </div>
 
             {/* Featured Product 3 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp3', name: 'Kalung Etnik Kayu Handmade', price: 85000, image: 'https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&q=80&w=400" alt="Craft" className="product-image" />
                 <div className="badge-tag purple-tag">Official</div>
@@ -510,14 +486,14 @@ function App() {
                   <span>4.9</span>
                   <span className="reviews">(42 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp3', name: 'Kalung Etnik Kayu Handmade', price: 85000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp3', name: 'Kalung Etnik Kayu Handmade', price: 85000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
             </div>
 
             {/* Featured Product 4 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp4', name: 'Dompet Kulit Pria Premium', price: 250000, image: 'https://loremflickr.com/400/400/leather,wallet' })}>
               <div className="product-image-container">
                 <img src="https://loremflickr.com/400/400/leather,wallet" alt="Dompet Kulit" className="product-image" />
                 <div className="badge-tag blue-tag">Lokal</div>
@@ -533,14 +509,14 @@ function App() {
                   <span>4.8</span>
                   <span className="reviews">(85 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp4', name: 'Dompet Kulit Pria Premium', price: 250000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp4', name: 'Dompet Kulit Pria Premium', price: 250000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
             </div>
 
             {/* Featured Product 5 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp5', name: 'Speaker Bluetooth Mini Portable', price: 210000, image: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1608042314453-ae338d80c427?auto=format&fit=crop&q=80&w=400" alt="Audio" className="product-image" />
                 <div className="badge-tag blue-tag">Elektronik</div>
@@ -556,14 +532,14 @@ function App() {
                   <span>4.7</span>
                   <span className="reviews">(56 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp5', name: 'Speaker Bluetooth Mini Portable', price: 210000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp5', name: 'Speaker Bluetooth Mini Portable', price: 210000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
             </div>
 
             {/* Featured Product 6 */}
-            <div className="product-card card-hover">
+            <div className="product-card card-hover" style={{ cursor: "pointer" }} onClick={() => setSelectedProduct({ id: 'fp6', name: 'Keripik Singkong Pedas Level 5', price: 15000, image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=400' })}>
               <div className="product-image-container">
                 <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=400" alt="Snack" className="product-image" />
                 <div className="badge-tag red-tag">Diskon</div>
@@ -580,7 +556,7 @@ function App() {
                   <span>4.8</span>
                   <span className="reviews">(324 ulasan)</span>
                 </div>
-                <button className="btn-add-cart" onClick={() => addToCart({ id: 'fp6', name: 'Keripik Singkong Pedas Level 5', price: 15000 })} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}>
+                <button className="btn-add-cart" onClick={(e) => { e.stopPropagation(); addToCart({ id: 'fp6', name: 'Keripik Singkong Pedas Level 5', price: 15000 }); }} style={{ marginTop: '0.5rem', width: '100%', padding: '0.5rem', borderRadius: '8px', border: 'none', background: 'var(--primary-color)', color: '#fff', cursor: 'pointer' }}>
                   <Plus size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Keranjang
                 </button>
               </div>
@@ -652,12 +628,12 @@ function App() {
           <div className="container bottom-content">
             <p>&copy; 2026 Saudagar - AI Marketplace UMKM Ecosystem.</p>
             <div className="payment-methods">
-              <span className="payment-badge">QRIS</span>
-              <span className="payment-badge">VA</span>
-              <span className="payment-badge">GoPay</span>
-              <span className="payment-badge">OVO</span>
-              <span className="payment-badge">Dana</span>
-              <span className="payment-badge">Visa</span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS" style={{ height: '18px', objectFit: 'contain' }} /></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#ee4d2d', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-0.5px', fontSize: '14px', fontFamily: 'Arial, sans-serif' }}>SeaBank</span></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay" style={{ height: '16px', objectFit: 'contain' }} /></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg" alt="OVO" style={{ height: '16px', objectFit: 'contain' }} /></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="Dana" style={{ height: '16px', objectFit: 'contain' }} /></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg viewBox="0 0 38 12" style={{ height: '14px', fill: '#1434CB' }}><path d="M14.34,11.3H11.58L13.31,0.5H16.07L14.34,11.3ZM26.24,7.66C26.24,5.43,23.11,5.3,23.13,4.04C23.14,3.67,23.47,3.27,24.23,3.16C24.61,3.1,25.43,3.06,26.26,3.44L26.75,0.48C26.3,0.32,25.75,0.18,25.04,0.18C22.42,0.18,20.57,1.57,20.55,3.84C20.53,5.52,22.06,6.46,23.23,7.03C24.43,7.61,24.84,7.97,24.84,8.48C24.82,9.26,23.9,9.58,23.19,9.58C22.12,9.58,21.5,9.29,21.05,9.06L20.54,12.08C20.99,12.28,21.78,12.47,22.61,12.47C25.41,12.47,27.24,11.08,27.24,8.74L26.24,7.66ZM33.34,11.3H36.3L34.34,0.5H31.95C31.25,0.5,30.68,0.91,30.4,1.56L25.96,11.3H28.84L29.41,9.7H32.96L33.34,11.3ZM30.2,7.56L31.62,3.67L32.42,7.56H30.2ZM11.1,11.3L7.96,2.99C7.81,2.5,7.69,2.37,7.28,2.15C5.7,1.35,2.71,0.67,0,0.5L0.08,0.85C0.52,0.94,1.48,1.21,2.02,1.58C2.33,1.8,2.44,2.05,2.52,2.44L4.81,11.3H7.72Z"/></svg></span>
             </div>
           </div>
         </div>
@@ -745,6 +721,13 @@ function App() {
           )}
         </div>
       )}
+
+      <ProductModal 
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        onAddToCart={addToCart}
+      />
+
 
     </div>
   );
