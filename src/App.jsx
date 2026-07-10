@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Heart, User, ChevronRight, Volume2, Star, Sparkles, Tag, Truck, Link2, SearchIcon, ChevronLeft, Zap, Coffee, Shirt, Scissors, Laptop, BookOpen, Wrench, Smartphone, Globe, Mail, Phone, MessageSquare, Plus, CheckCircle2 } from 'lucide-react';
+import { Search, ShoppingCart, Heart, Bell, User, ChevronRight, Volume2, Star, Sparkles, Tag, Truck, Link2, SearchIcon, ChevronLeft, Zap, Coffee, Shirt, Scissors, Laptop, BookOpen, Wrench, Smartphone, Globe, Mail, Phone, MessageSquare, Plus, CheckCircle2 } from 'lucide-react';
 import './App.css';
 import './Figma.css';
 import FigmaHero from './components/FigmaHero';
@@ -8,6 +8,7 @@ import WaBanner from './components/WaBanner';
 import FigmaInfoGrid from './components/FigmaInfoGrid';
 import ProductModal from './components/ProductModal';
 import TrustEcosystem from './components/TrustEcosystem';
+import AIChatAssistant from './components/AIChatAssistant';
 
 
 function App() {
@@ -17,6 +18,45 @@ function App() {
   const [paymentStep, setPaymentStep] = useState('idle'); // idle, processing, qris, success
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeFilter, setActiveFilter] = useState('Produk Terbaru');
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 9,
+    minutes: 58,
+    seconds: 22
+  });
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        if (seconds > 0) {
+          seconds -= 1;
+        } else {
+          if (minutes > 0) {
+            minutes -= 1;
+            seconds = 59;
+          } else {
+            if (hours > 0) {
+              hours -= 1;
+              minutes = 59;
+              seconds = 59;
+            } else {
+              hours = 9;
+              minutes = 59;
+              seconds = 59;
+            }
+          }
+        }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -82,18 +122,58 @@ function App() {
           <div className="logo-section">
             <div className="logo-icon">S</div>
             <div className="logo-text">
-              <span className="logo-title">SAUDAGAR</span>
-              <span className="logo-subtitle">UII</span>
+              <span className="logo-title">SAUDAGAR UII</span>
+              <span className="logo-subtitle">MARKETPLACE UMKM</span>
             </div>
           </div>
 
-          <div className="search-section">
+          <div className="search-section" style={{ position: 'relative' }}>
             <div className="search-bar">
-              <input type="text" placeholder="Cari produk, merchant, atau kategori..." />
+              <input 
+                type="text" 
+                placeholder="Cari produk, merchant, atau kategori..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchOpen(true)}
+                onBlur={() => setTimeout(() => setIsSearchOpen(false), 200)}
+              />
               <button className="search-btn">
                 <Search size={18} />
               </button>
             </div>
+
+            {isSearchOpen && (
+              <div className="search-dropdown animate-slide-up" style={{
+                position: 'absolute', top: '110%', left: 0, right: 0,
+                backgroundColor: 'white', borderRadius: '12px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                border: '1px solid #e2e8f0', zIndex: 50,
+                padding: '1.2rem', overflow: 'hidden', textAlign: 'left'
+              }}>
+                {searchQuery ? (
+                  <div>
+                    <h5 style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '0.75rem', fontWeight: 700, letterSpacing: '0.5px' }}>HASIL PENCARIAN</h5>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', borderRadius: '8px', cursor: 'pointer', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                      <Search size={16} color="#94a3b8" />
+                      <span style={{ fontSize: '0.9rem', color: '#1e293b' }}>Mencari "<strong>{searchQuery}</strong>" di <strong>Semua Kategori</strong></span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', borderRadius: '8px', cursor: 'pointer', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                      <Search size={16} color="#94a3b8" />
+                      <span style={{ fontSize: '0.9rem', color: '#1e293b' }}>Mencari "<strong>{searchQuery}</strong>" di <strong>Toko Merchant</strong></span>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <h5 style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '0.75rem', fontWeight: 700, letterSpacing: '0.5px' }}>PENCARIAN POPULER</h5>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                      <span style={{ padding: '0.4rem 0.8rem', backgroundColor: '#f1f5f9', borderRadius: '20px', fontSize: '0.8rem', color: '#334155', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={(e) => e.target.style.backgroundColor = '#e2e8f0'} onMouseOut={(e) => e.target.style.backgroundColor = '#f1f5f9'} onClick={() => setSearchQuery('Batik Tulis')}>Batik Tulis Jogja</span>
+                      <span style={{ padding: '0.4rem 0.8rem', backgroundColor: '#f1f5f9', borderRadius: '20px', fontSize: '0.8rem', color: '#334155', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={(e) => e.target.style.backgroundColor = '#e2e8f0'} onMouseOut={(e) => e.target.style.backgroundColor = '#f1f5f9'} onClick={() => setSearchQuery('Sambal Matah')}>Sambal Matah Asli</span>
+                      <span style={{ padding: '0.4rem 0.8rem', backgroundColor: '#f1f5f9', borderRadius: '20px', fontSize: '0.8rem', color: '#334155', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={(e) => e.target.style.backgroundColor = '#e2e8f0'} onMouseOut={(e) => e.target.style.backgroundColor = '#f1f5f9'} onClick={() => setSearchQuery('Kopi Gayo')}>Kopi Arabika Gayo</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="actions-section">
@@ -108,9 +188,91 @@ function App() {
                 }}>{cartCount}</span>
               )}
             </button>
-            <button className="action-icon">
-              <Heart size={20} />
-            </button>
+            <div style={{ position: 'relative' }}>
+              <button className="action-icon" onClick={() => setIsWishlistOpen(!isWishlistOpen)} style={{ position: 'relative' }}>
+                <Heart size={20} />
+                <span style={{
+                  position: 'absolute', top: '-2px', right: '-2px',
+                  backgroundColor: '#ea580c', border: '2px solid white',
+                  width: '10px', height: '10px', borderRadius: '50%'
+                }}></span>
+              </button>
+
+              {isWishlistOpen && (
+                <div className="notif-dropdown animate-slide-up" style={{ width: '320px', right: '-60px' }}>
+                  <div className="notif-header">
+                    <h4>Produk Disukai</h4>
+                    <span className="mark-read" onClick={() => setIsWishlistOpen(false)}>Tutup</span>
+                  </div>
+                  <div className="notif-list" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                    <div className="notif-item">
+                      <div style={{ width: '48px', height: '48px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
+                         <img src="/batik_tulis.png" alt="Batik" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      </div>
+                      <div className="notif-content" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 600, color: '#1e293b' }}>Batik Tulis Jogja Premium</p>
+                        <span style={{ color: '#ea580c', fontWeight: 'bold', fontSize: '0.9rem' }}>Rp420.000</span>
+                      </div>
+                    </div>
+                    <div className="notif-item">
+                      <div style={{ width: '48px', height: '48px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
+                         <img src="/sambal_matah.png" alt="Sambal" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      </div>
+                      <div className="notif-content" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 600, color: '#1e293b' }}>Sambal Matah Asli Original</p>
+                        <span style={{ color: '#ea580c', fontWeight: 'bold', fontSize: '0.9rem' }}>Rp25.000</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ padding: '1rem', borderTop: '1px solid #f1f5f9' }}>
+                    <button style={{ width: '100%', padding: '0.6rem', background: '#ea580c', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'background 0.2s' }} onMouseOver={(e) => e.target.style.background = '#c2410c'} onMouseOut={(e) => e.target.style.background = '#ea580c'}>Lihat Semua Favorit</button>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div style={{ position: 'relative' }}>
+              <button className="action-icon" onClick={() => setIsNotifOpen(!isNotifOpen)} style={{ position: 'relative' }}>
+                <Bell size={20} />
+                <span style={{
+                  position: 'absolute', top: '-2px', right: '-2px',
+                  backgroundColor: '#ef4444', border: '2px solid white',
+                  width: '10px', height: '10px', borderRadius: '50%'
+                }}></span>
+              </button>
+
+              {isNotifOpen && (
+                <div className="notif-dropdown animate-slide-up">
+                  <div className="notif-header">
+                    <h4>Notifikasi Terbaru</h4>
+                    <span className="mark-read" onClick={() => setIsNotifOpen(false)}>Tandai sudah dibaca</span>
+                  </div>
+                  <div className="notif-list">
+                    <div className="notif-item unread">
+                      <div className="notif-icon bg-gradient-orange"><Star size={14} color="#fff" /></div>
+                      <div className="notif-content">
+                        <p><strong>Promo Kilat!</strong> Diskon 50% untuk produk Fashion pria malam ini.</p>
+                        <span>2 menit yang lalu</span>
+                      </div>
+                    </div>
+                    <div className="notif-item unread">
+                      <div className="notif-icon bg-gradient-green"><ShoppingCart size={14} color="#fff" /></div>
+                      <div className="notif-content">
+                        <p><strong>Seseorang dari FIAI</strong> baru saja membeli Nasi Kuning Komplit.</p>
+                        <span>15 menit yang lalu</span>
+                      </div>
+                    </div>
+                    <div className="notif-item">
+                      <div className="notif-icon bg-gradient-blue"><CheckCircle2 size={14} color="#fff" /></div>
+                      <div className="notif-content">
+                        <p><strong>Selamat!</strong> Akun Merchant Anda telah diverifikasi oleh tim UII.</p>
+                        <span>1 hari yang lalu</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="notif-footer">Lihat Semua Notifikasi</div>
+                </div>
+              )}
+            </div>
             <div className="auth-buttons">
               <button className="btn-icon-text">
                 <User size={18} /> Masuk
@@ -139,50 +301,35 @@ function App() {
               <a href="#" className="see-all">Lihat semua</a>
             </div>
 
-            <div className="announcement-list">
-              <div className="announcement-item card-hover">
-                <div className="announcement-icon blue">
-                  <Volume2 size={20} />
-                </div>
-                <div className="announcement-content">
-                  <div className="announcement-meta">
-                    <span className="badge badge-blue">INFO</span>
-                    <span className="date">4 Jun 2026</span>
-                  </div>
+            <div className="prof-list">
+              <div className="prof-card">
+                <div className="prof-card-icon bg-light-blue"><Volume2 size={20} color="#2563eb" /></div>
+                <div className="prof-card-content">
+                  <div className="prof-meta"><span className="prof-pill blue">INFO</span> 4 Jun 2026</div>
                   <h3>Verifikasi Merchant Dipercepat</h3>
                   <p>Proses verifikasi kini hanya 1x24 jam. Daftar sekarang dan mulai berjualan besok.</p>
                 </div>
-                <ChevronRight size={16} className="item-arrow" />
+                <div className="prof-card-action"><ChevronRight size={18} color="#94a3b8" /></div>
               </div>
 
-              <div className="announcement-item card-hover">
-                <div className="announcement-icon yellow">
-                  <Star size={20} />
-                </div>
-                <div className="announcement-content">
-                  <div className="announcement-meta">
-                    <span className="badge badge-yellow">PROMO</span>
-                    <span className="date">2 Jun 2026</span>
-                  </div>
+              <div className="prof-card">
+                <div className="prof-card-icon bg-light-yellow"><Star size={20} color="#d97706" /></div>
+                <div className="prof-card-content">
+                  <div className="prof-meta"><span className="prof-pill yellow">PROMO</span> 2 Jun 2026</div>
                   <h3>Program Saudagar Mahasiswa UII</h3>
                   <p>Mahasiswa UII? Dapatkan hibah modal usaha selama 6 bulan pertama.</p>
                 </div>
-                <ChevronRight size={16} className="item-arrow" />
+                <div className="prof-card-action"><ChevronRight size={18} color="#94a3b8" /></div>
               </div>
 
-              <div className="announcement-item card-hover">
-                <div className="announcement-icon purple">
-                  <Sparkles size={20} />
-                </div>
-                <div className="announcement-content">
-                  <div className="announcement-meta">
-                    <span className="badge badge-purple">UPDATE AI</span>
-                    <span className="date">1 Jun 2026</span>
-                  </div>
+              <div className="prof-card">
+                <div className="prof-card-icon bg-light-purple"><Sparkles size={20} color="#9333ea" /></div>
+                <div className="prof-card-content">
+                  <div className="prof-meta"><span className="prof-pill purple">UPDATE AI</span> 1 Jun 2026</div>
                   <h3>Fitur AI Photo Enhancement Hadir</h3>
                   <p>Jadikan foto produk kamu sekelas hasil studio profesional secara otomatis.</p>
                 </div>
-                <ChevronRight size={16} className="item-arrow" />
+                <div className="prof-card-action"><ChevronRight size={18} color="#94a3b8" /></div>
               </div>
             </div>
           </section>
@@ -197,41 +344,56 @@ function App() {
               <a href="#" className="see-all orange-text">Klaim semua</a>
             </div>
 
-            <div className="promo-list">
-              <div className="promo-item card-hover green-border">
-                <div className="promo-icon-box green-bg">
-                  <Tag size={24} color="#065f46" />
+            <div className="shopee-list">
+              <div className="shopee-ticket-wrapper">
+
+                <div className="shopee-ticket">
+                  <div className="st-left">
+                    <div className="st-name">Diskon Rp10RB Min. Blj Rp200RB</div>
+                    <div className="st-progress-bg">
+                      <div className="st-progress-fill" style={{ width: '40%' }}></div>
+                    </div>
+                    <div className="st-date">Hingga: 31.01.2026</div>
+                  </div>
+                  <div className="st-divider"></div>
+                  <div className="st-right">
+                    <button className="st-btn">Klaim</button>
+                  </div>
                 </div>
-                <div className="promo-content">
-                  <div className="promo-tag green-text">FLASH SALE</div>
-                  <h3>Cashback 10% via QRIS</h3>
-                  <p>Max potongan Rp10.000. Berlaku s.d. 30 Jun</p>
-                </div>
-                <button className="btn-claim green-outline">Klaim</button>
               </div>
 
-              <div className="promo-item card-hover yellow-border">
-                <div className="promo-icon-box yellow-bg">
-                  <Truck size={24} color="#92400e" />
+              <div className="shopee-ticket-wrapper">
+
+                <div className="shopee-ticket">
+                  <div className="st-left">
+                    <div className="st-name">Diskon 20% Min. Blj Rp200RB s/d Rp5RB</div>
+                    <div className="st-progress-bg">
+                      <div className="st-progress-fill" style={{ width: '25%' }}></div>
+                    </div>
+                    <div className="st-date">Hingga: 31.01.2026</div>
+                  </div>
+                  <div className="st-divider"></div>
+                  <div className="st-right">
+                    <button className="st-btn">Klaim</button>
+                  </div>
                 </div>
-                <div className="promo-content">
-                  <div className="promo-tag yellow-text">GRATIS ONGKIR</div>
-                  <h3>Gratis Ongkir Seluruh Indonesia</h3>
-                  <p>Kode: SAUDAGARFREE - untuk min Trx 50rb</p>
-                </div>
-                <button className="btn-claim yellow-outline">Klaim</button>
               </div>
 
-              <div className="promo-item card-hover purple-border">
-                <div className="promo-icon-box purple-bg">
-                  <Link2 size={24} color="#5b21b6" />
+              <div className="shopee-ticket-wrapper">
+
+                <div className="shopee-ticket">
+                  <div className="st-left">
+                    <div className="st-name">Cashback 10% Min. Blj Rp150RB s/d 5RB koin</div>
+                    <div className="st-progress-bg">
+                      <div className="st-progress-fill" style={{ width: '60%' }}></div>
+                    </div>
+                    <div className="st-date">Hingga: 31.01.2026</div>
+                  </div>
+                  <div className="st-divider"></div>
+                  <div className="st-right">
+                    <button className="st-btn">Klaim</button>
+                  </div>
                 </div>
-                <div className="promo-content">
-                  <div className="promo-tag purple-text">KEMITRAAN AI</div>
-                  <h3>Komisi Affiliate 15%</h3>
-                  <p>Bagikan link produk dan dapatkan komisi setiap penjualan.</p>
-                </div>
-                <button className="btn-claim purple-outline">Klaim</button>
               </div>
             </div>
           </section>
@@ -306,9 +468,9 @@ function App() {
             </div>
             <div className="fs-timer">
               <span>Berakhir dalam:</span>
-              <div className="timer-box">09</div><span>:</span>
-              <div className="timer-box">58</div><span>:</span>
-              <div className="timer-box">22</div>
+              <div className="timer-box">{String(timeLeft.hours).padStart(2, '0')}</div><span>:</span>
+              <div className="timer-box">{String(timeLeft.minutes).padStart(2, '0')}</div><span>:</span>
+              <div className="timer-box">{String(timeLeft.seconds).padStart(2, '0')}</div>
             </div>
           </div>
 
@@ -413,7 +575,7 @@ function App() {
 
           <div className="filter-chips">
             {['Produk Terbaru', 'Terlaris', 'Rekomendasi AI', 'Official Merchant'].map((filter) => (
-              <button 
+              <button
                 key={filter}
                 className={`chip ${activeFilter === filter ? 'active' : ''}`}
                 onClick={() => setActiveFilter(filter)}
@@ -722,7 +884,7 @@ function App() {
               </div>
             </div>
             <p className="footer-desc">
-              Marketplace UMKM Universitas Islam Indonesia. Mendukung wirausaha lokal dengan teknologi AI.
+              Marketplace UMKM Universitas Islam Indonesia. Mendukung wirausaha lokal dan UMKM dengan teknologi AI.
             </p>
             <div className="social-links">
               <a href="#" className="social-icon"><Globe size={20} /></a>
@@ -776,7 +938,7 @@ function App() {
               <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay" style={{ height: '16px', objectFit: 'contain' }} /></span>
               <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg" alt="OVO" style={{ height: '16px', objectFit: 'contain' }} /></span>
               <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="Dana" style={{ height: '16px', objectFit: 'contain' }} /></span>
-              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg viewBox="0 0 38 12" style={{ height: '14px', fill: '#1434CB' }}><path d="M14.34,11.3H11.58L13.31,0.5H16.07L14.34,11.3ZM26.24,7.66C26.24,5.43,23.11,5.3,23.13,4.04C23.14,3.67,23.47,3.27,24.23,3.16C24.61,3.1,25.43,3.06,26.26,3.44L26.75,0.48C26.3,0.32,25.75,0.18,25.04,0.18C22.42,0.18,20.57,1.57,20.55,3.84C20.53,5.52,22.06,6.46,23.23,7.03C24.43,7.61,24.84,7.97,24.84,8.48C24.82,9.26,23.9,9.58,23.19,9.58C22.12,9.58,21.5,9.29,21.05,9.06L20.54,12.08C20.99,12.28,21.78,12.47,22.61,12.47C25.41,12.47,27.24,11.08,27.24,8.74L26.24,7.66ZM33.34,11.3H36.3L34.34,0.5H31.95C31.25,0.5,30.68,0.91,30.4,1.56L25.96,11.3H28.84L29.41,9.7H32.96L33.34,11.3ZM30.2,7.56L31.62,3.67L32.42,7.56H30.2ZM11.1,11.3L7.96,2.99C7.81,2.5,7.69,2.37,7.28,2.15C5.7,1.35,2.71,0.67,0,0.5L0.08,0.85C0.52,0.94,1.48,1.21,2.02,1.58C2.33,1.8,2.44,2.05,2.52,2.44L4.81,11.3H7.72Z"/></svg></span>
+              <span className="payment-badge" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg viewBox="0 0 38 12" style={{ height: '14px', fill: '#1434CB' }}><path d="M14.34,11.3H11.58L13.31,0.5H16.07L14.34,11.3ZM26.24,7.66C26.24,5.43,23.11,5.3,23.13,4.04C23.14,3.67,23.47,3.27,24.23,3.16C24.61,3.1,25.43,3.06,26.26,3.44L26.75,0.48C26.3,0.32,25.75,0.18,25.04,0.18C22.42,0.18,20.57,1.57,20.55,3.84C20.53,5.52,22.06,6.46,23.23,7.03C24.43,7.61,24.84,7.97,24.84,8.48C24.82,9.26,23.9,9.58,23.19,9.58C22.12,9.58,21.5,9.29,21.05,9.06L20.54,12.08C20.99,12.28,21.78,12.47,22.61,12.47C25.41,12.47,27.24,11.08,27.24,8.74L26.24,7.66ZM33.34,11.3H36.3L34.34,0.5H31.95C31.25,0.5,30.68,0.91,30.4,1.56L25.96,11.3H28.84L29.41,9.7H32.96L33.34,11.3ZM30.2,7.56L31.62,3.67L32.42,7.56H30.2ZM11.1,11.3L7.96,2.99C7.81,2.5,7.69,2.37,7.28,2.15C5.7,1.35,2.71,0.67,0,0.5L0.08,0.85C0.52,0.94,1.48,1.21,2.02,1.58C2.33,1.8,2.44,2.05,2.52,2.44L4.81,11.3H7.72Z" /></svg></span>
             </div>
           </div>
         </div>
@@ -865,12 +1027,14 @@ function App() {
         </div>
       )}
 
-      <ProductModal 
+      <ProductModal
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onAddToCart={addToCart}
       />
 
+      {/* Floating Chat Assistant */}
+      <AIChatAssistant />
 
     </div>
   );

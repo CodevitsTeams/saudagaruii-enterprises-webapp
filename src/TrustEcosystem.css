@@ -52,7 +52,7 @@
 .testi-stars { display: flex; gap: 4px; }
 .testi-quote { font-size: 1rem; color: #334155; font-style: italic; line-height: 1.7; flex: 1; }
 .testi-author { display: flex; align-items: center; gap: 1rem; border-top: 1px solid #f1f5f9; padding-top: 1.5rem; }
-.author-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
+.author-avatar { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
 .author-info h4 { font-size: 1rem; font-weight: 800; color: #0f172a; margin-bottom: 2px; }
 .author-info span { font-size: 0.8rem; color: #64748b; font-weight: 500; }
 .bg-gradient-green { background: linear-gradient(135deg, #10b981, #059669); }

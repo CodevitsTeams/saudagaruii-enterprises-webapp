@@ -9,7 +9,10 @@ export default function FigmaHero() {
           <span className="hmb-tag">UMKM NAIK KELAS & AI POWERED</span>
           <h1 className="hmb-title">Produk Lokal Terbaik<br />dari Penjuru Nusantara</h1>
           <p className="hmb-subtitle">Temukan ribuan produk pilihan UMKM (Bahan berkualitas, fashion, kerajinan, dan lain-lain). Dijamin original 100%.</p>
-          <button className="hmb-btn">Belanja Sekarang</button>
+          <div className="hmb-buttons">
+            <button className="hmb-btn">Belanja Sekarang</button>
+            <button className="hmb-btn-outline">Jual Produkmu</button>
+          </div>
 
           <div className="hmb-stats">
             <div className="stat"><strong>12.400+</strong><span>Total Transaksi</span></div>
@@ -17,40 +20,42 @@ export default function FigmaHero() {
             <div className="stat"><strong>98%</strong><span>Rating Kepuasan</span></div>
           </div>
         </div>
+        
+        {/* Pagination Dots */}
+        <div className="hmb-pagination">
+          <span className="dot active"></span>
+          <span className="dot"></span>
+          <span className="dot"></span>
+          <span className="dot"></span>
+        </div>
       </div>
 
-      <div className="hero-side-banners">
-        <div className="side-banner sb-merchant">
-          <div className="sb-top">
-            <div className="sb-icon"><MessageSquare size={20} color="#0b4931" /></div>
-            <div className="sb-text">
-              <h3>Daftar Jadi Merchant UMKM</h3>
-              <p>Jangkau jutaan pembeli aktif.</p>
-            </div>
+      <div className="hero-side-banners solid-banner-stack" style={{ gap: '1rem', marginTop: 0 }}>
+        <div className="solid-banner-card bg-emerald-900" style={{ padding: '1.25rem' }}>
+          <div className="banner-content">
+            <h3 style={{ fontSize: '1.15rem' }}>Daftar Jadi Merchant UMKM</h3>
+            <p style={{ fontSize: '0.85rem' }}>Jangkau jutaan pembeli aktif.</p>
+            <button className="banner-btn green-btn">Daftar Sekarang &rarr;</button>
           </div>
-          <button className="sb-btn" style={{ color: '#0b4931' }}>Daftar Sekarang &rarr;</button>
+          <div className="banner-icon" style={{ top: '1rem', right: '1rem', fontSize: '1.8rem' }}>💬</div>
         </div>
 
-        <div className="side-banner sb-flash">
-          <div className="sb-top">
-            <div className="sb-icon"><Zap size={20} color="#d97706" /></div>
-            <div className="sb-text">
-              <h3>Flash Sale Hari Ini!</h3>
-              <p>Diskon hingga 50% untuk produk terpilih.</p>
-            </div>
+        <div className="solid-banner-card bg-amber-700" style={{ padding: '1.25rem' }}>
+          <div className="banner-content">
+            <h3 style={{ fontSize: '1.15rem' }}>Flash Sale Hari Ini!</h3>
+            <p style={{ fontSize: '0.85rem' }}>Diskon hingga 50% untuk produk terpilih.</p>
+            <button className="banner-btn yellow-btn">Lihat Promo &rarr;</button>
           </div>
-          <button className="sb-btn" style={{ color: '#d97706' }}>Lihat Promo &rarr;</button>
+          <div className="banner-icon" style={{ top: '1rem', right: '1rem', fontSize: '1.8rem' }}>⚡</div>
         </div>
 
-        <div className="side-banner sb-affiliate">
-          <div className="sb-top">
-            <div className="sb-icon"><Handshake size={20} color="#6d28d9" /></div>
-            <div className="sb-text">
-              <h3>Program Affiliate</h3>
-              <p>Dapatkan komisi hingga 10% setiap referensi.</p>
-            </div>
+        <div className="solid-banner-card bg-violet-700" style={{ padding: '1.25rem' }}>
+          <div className="banner-content">
+            <h3 style={{ fontSize: '1.15rem' }}>Program Affiliate</h3>
+            <p style={{ fontSize: '0.85rem' }}>Dapatkan komisi hingga 10% setiap referensi.</p>
+            <button className="banner-btn purple-btn">Bergabung &rarr;</button>
           </div>
-          <button className="sb-btn" style={{ color: '#6d28d9' }}>Bergabung &rarr;</button>
+          <div className="banner-icon" style={{ top: '1rem', right: '1rem', fontSize: '1.8rem' }}>🤝</div>
         </div>
       </div>
     </section>
