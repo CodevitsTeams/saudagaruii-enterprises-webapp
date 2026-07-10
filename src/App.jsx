@@ -10,6 +10,7 @@ import ProductModal from './components/ProductModal';
 import TrustEcosystem from './components/TrustEcosystem';
 import AIChatAssistant from './components/AIChatAssistant';
 import AdminLogin from './components/AdminLogin';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('marketplace');
@@ -100,7 +101,11 @@ function App() {
   };
 
   if (currentPage === 'admin_login') {
-    return <AdminLogin onBack={() => setCurrentPage('marketplace')} />;
+    return <AdminLogin onBack={() => setCurrentPage('marketplace')} onLogin={() => setCurrentPage('dashboard')} />;
+  }
+
+  if (currentPage === 'dashboard') {
+    return <AdminDashboard />;
   }
 
   return (

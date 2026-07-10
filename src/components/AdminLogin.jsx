@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronLeft, Bot, Package, BarChart2, Users, Mail, Eye, EyeOff, Lock } from 'lucide-react';
 import '../AdminLogin.css';
 
-export default function AdminLogin({ onBack }) {
+export default function AdminLogin({ onBack, onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="admin-login-container">
@@ -107,7 +107,12 @@ export default function AdminLogin({ onBack }) {
               <a href="#" className="forgot-pwd">Lupa password?</a>
             </div>
 
-            <button className="btn-login" onClick={() => alert("Login functionality not wired yet!")}>
+            <button 
+              className="btn-login" 
+              onClick={() => {
+                if (onLogin) onLogin();
+              }}
+            >
               Masuk ke Dashboard
             </button>
 
