@@ -1,0 +1,74 @@
+/* --- TRUST ECOSYSTEM (BENTO, MARQUEE, TESTIMONIALS) --- */
+.trust-ecosystem { margin-top: 1rem; margin-bottom: 4rem; display: flex; flex-direction: column; gap: 4rem; }
+
+/* Bento Grid */
+.bento-section { padding: 0 1.5rem; }
+.bento-grid { display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 1.5rem; min-height: 450px; }
+.bento-box { border-radius: 24px; padding: 2.5rem; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.4s; }
+.bento-box:hover { transform: translateY(-5px); }
+.bento-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
+.bento-content { position: relative; z-index: 2; }
+.bento-large { grid-row: span 2; }
+.bento-small { grid-column: 2; }
+
+.bg-gradient-dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+.bg-gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+.bg-gradient-purple { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
+
+.bento-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.bento-content h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.5px; }
+.bento-content p { font-size: 1rem; opacity: 0.85; line-height: 1.6; }
+
+/* Bento Visuals */
+.bento-visual { position: relative; z-index: 2; margin-top: 2rem; border-radius: 16px; background: rgba(0,0,0,0.2); overflow: hidden; display: flex; flex: 1; }
+.visual-photo { flex: 1; display: flex; background: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=100&w=800') center/cover; }
+.photo-before { flex: 1; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px) grayscale(80%) brightness(0.7); -webkit-backdrop-filter: blur(6px) grayscale(80%) brightness(0.7); font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.8); border-right: 3px solid #10b981; box-shadow: 5px 0 15px rgba(0,0,0,0.5); z-index: 2; }
+.photo-divider { display: none; }
+.photo-after { flex: 1; display: flex; align-items: center; justify-content: center; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+
+.visual-lines { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.line { height: 12px; background: rgba(255,255,255,0.2); border-radius: 12px; }
+.l-long { width: 90%; } .l-short { width: 40%; } .l-med { width: 70%; }
+
+.visual-chat { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem; font-weight: 600; }
+.chat-bubble { padding: 0.75rem 1rem; border-radius: 14px; max-width: 85%; }
+.chat-bubble.left { background: rgba(255,255,255,0.1); align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-bubble.right { background: #10b981; align-self: flex-end; border-bottom-right-radius: 4px; color: #fff; }
+
+/* Marquee */
+.marquee-section { padding: 4rem 0; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; background: #fafafa; text-align: center; overflow: hidden; margin-top: 2rem; }
+.marquee-title { font-size: 1.1rem; color: #64748b; font-weight: 700; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1px; }
+.marquee-container { width: 100vw; position: relative; left: calc(-50vw + 50%); overflow: hidden; }
+.marquee-track { display: flex; width: max-content; animation: scrollMarquee 35s linear infinite; gap: 5rem; padding: 0 2rem; }
+.brand-logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.4rem; font-weight: 900; color: #94a3b8; filter: grayscale(100%) opacity(0.7); transition: all 0.4s; cursor: pointer; }
+.brand-logo:hover { filter: grayscale(0%) opacity(1); color: #0f172a; transform: scale(1.05); }
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Testimonials */
+.testimonial-section { padding: 0 1.5rem; }
+.testimonial-carousel { display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 2rem; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+.testi-card { min-width: 320px; max-width: 350px; flex: 1; background: #fff; border-radius: 24px; padding: 2.5rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s; scroll-snap-align: center; }
+.testi-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #f59e0b; }
+.testi-stars { display: flex; gap: 4px; }
+.testi-quote { font-size: 1rem; color: #334155; font-style: italic; line-height: 1.7; flex: 1; }
+.testi-author { display: flex; align-items: center; gap: 1rem; border-top: 1px solid #f1f5f9; padding-top: 1.5rem; }
+.author-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
+.author-info h4 { font-size: 1rem; font-weight: 800; color: #0f172a; margin-bottom: 2px; }
+.author-info span { font-size: 0.8rem; color: #64748b; font-weight: 500; }
+.bg-gradient-green { background: linear-gradient(135deg, #10b981, #059669); }
+.bg-gradient-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10; color: #334155; transition: all 0.2s; border: 1px solid #e2e8f0; }
+.carousel-arrow:hover { background: #f8fafc; color: #10b981; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+.left-arrow { left: -24px; }
+.right-arrow { right: -24px; }
+.testimonial-carousel::-webkit-scrollbar { display: none; }
+.testimonial-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (max-width: 768px) {
+  .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .bento-large { grid-row: span 1; }
+  .bento-small { grid-column: 1; }
+  .testimonial-carousel { flex-direction: column; }
+  .testi-card { min-width: 100%; }
+}
