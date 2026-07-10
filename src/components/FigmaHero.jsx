@@ -31,7 +31,12 @@ export default function FigmaHero() {
       </div>
 
       <div className="hero-side-banners solid-banner-stack" style={{ gap: '1rem', marginTop: 0 }}>
-        <div className="solid-banner-card bg-emerald-900" style={{ padding: '1.25rem' }}>
+        <div className="solid-banner-card bg-emerald-900" style={{ 
+          padding: '1.25rem',
+          backgroundImage: "linear-gradient(to right, rgba(6, 78, 59, 0.95), rgba(6, 78, 59, 0.6)), url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
           <div className="banner-content">
             <h3 style={{ fontSize: '1.15rem' }}>Daftar Jadi Merchant UMKM</h3>
             <p style={{ fontSize: '0.85rem' }}>Jangkau jutaan pembeli aktif.</p>
@@ -40,7 +45,12 @@ export default function FigmaHero() {
           <div className="banner-icon" style={{ top: '1rem', right: '1rem', fontSize: '1.8rem' }}>💬</div>
         </div>
 
-        <div className="solid-banner-card bg-amber-700" style={{ padding: '1.25rem' }}>
+        <div className="solid-banner-card bg-amber-700" style={{ 
+          padding: '1.25rem',
+          backgroundImage: "linear-gradient(to right, rgba(180, 83, 9, 0.95), rgba(180, 83, 9, 0.6)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=600&q=80')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
           <div className="banner-content">
             <h3 style={{ fontSize: '1.15rem' }}>Flash Sale Hari Ini!</h3>
             <p style={{ fontSize: '0.85rem' }}>Diskon hingga 50% untuk produk terpilih.</p>
@@ -49,7 +59,12 @@ export default function FigmaHero() {
           <div className="banner-icon" style={{ top: '1rem', right: '1rem', fontSize: '1.8rem' }}>⚡</div>
         </div>
 
-        <div className="solid-banner-card bg-violet-700" style={{ padding: '1.25rem' }}>
+        <div className="solid-banner-card bg-violet-700" style={{ 
+          padding: '1.25rem',
+          backgroundImage: "linear-gradient(to right, rgba(109, 40, 217, 0.95), rgba(109, 40, 217, 0.6)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
           <div className="banner-content">
             <h3 style={{ fontSize: '1.15rem' }}>Program Affiliate</h3>
             <p style={{ fontSize: '0.85rem' }}>Dapatkan komisi hingga 10% setiap referensi.</p>

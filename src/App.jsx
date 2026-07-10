@@ -9,9 +9,10 @@ import FigmaInfoGrid from './components/FigmaInfoGrid';
 import ProductModal from './components/ProductModal';
 import TrustEcosystem from './components/TrustEcosystem';
 import AIChatAssistant from './components/AIChatAssistant';
-
+import AdminLogin from './components/AdminLogin';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('marketplace');
   const [scrolled, setScrolled] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -97,6 +98,10 @@ function App() {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price);
   };
+
+  if (currentPage === 'admin_login') {
+    return <AdminLogin onBack={() => setCurrentPage('marketplace')} />;
+  }
 
   return (
     <div className="app-container">
@@ -274,7 +279,7 @@ function App() {
               )}
             </div>
             <div className="auth-buttons">
-              <button className="btn-icon-text">
+              <button className="btn-icon-text" onClick={() => setCurrentPage('admin_login')}>
                 <User size={18} /> Masuk
               </button>
               <button className="btn-primary">Daftar</button>

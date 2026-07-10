@@ -663,6 +663,14 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-card:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.3);
 }
 
 .cat-icon {
@@ -674,17 +682,34 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.category-card:hover .cat-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.category-card:hover .cat-icon svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .category-card span {
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
 }
 
 .category-card small {
   color: var(--text-light);
   font-size: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.category-card:hover span,
+.category-card:hover small {
+  color: #ffffff;
 }
 
 /* Flash Sale Section */

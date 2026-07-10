@@ -1231,8 +1231,23 @@ body {
 
 .prof-cat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-  border-color: #e2e8f0;
+  box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.3);
+  border-color: #ea580c;
+  background-color: #ea580c;
+}
+
+.prof-cat-card:hover .prof-cat-name,
+.prof-cat-card:hover .prof-cat-count {
+  color: #ffffff;
+}
+
+.prof-cat-card:hover .prof-cat-emoji {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.prof-cat-card:hover .prof-cat-emoji svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .prof-cat-emoji {
