@@ -46,7 +46,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(6, 78, 59, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(6, 78, 59, 0.4) 100%);
   z-index: 2;
 }
 
@@ -74,7 +74,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .register-logo-text {
@@ -106,6 +106,7 @@
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
+  padding-bottom: 10px;
   background: linear-gradient(to right, #fff, #94a3b8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -149,23 +150,25 @@
   position: absolute;
   top: 2rem;
   left: 2rem;
-  background: transparent;
-  border: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: transparent;
+  border: none;
   color: #64748b;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: color 0.2s;
-  padding: 0.5rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .btn-back-minimal:hover {
-  color: #1d1d1f;
-  background: #f1f5f9;
+  color: #ea580c;
+  background-color: rgba(234, 88, 12, 0.1);
+  transform: translateX(-4px);
 }
 
 .register-header {
@@ -241,7 +244,7 @@
   color: #fff;
   border: none;
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 1rem;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -254,7 +257,7 @@
 .register-btn-primary:hover {
   background: #000;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .register-divider {
@@ -328,10 +331,21 @@
   transform: translateY(20px);
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
 
 @keyframes fadeInUp {
   to {

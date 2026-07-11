@@ -123,6 +123,18 @@
   border-radius: 16px;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-watermark {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .admin-stat-card:hover {
@@ -133,17 +145,23 @@
 .stat-icon-wrapper {
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-value {
   font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-label {
   font-size: 0.85rem;
   opacity: 0.8;
+  position: relative;
+  z-index: 1;
 }
 
 .admin-left-footer {
@@ -183,8 +201,8 @@
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
   transition: all 0.2s ease;
   z-index: 10;
 }

@@ -30,6 +30,7 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
 
           <div className="admin-stats-grid">
             <div className="admin-stat-card">
+              <Bot size={120} color="#fca5a5" className="stat-watermark" />
               <div className="stat-icon-wrapper">
                 <Bot size={24} color="#fca5a5" />
               </div>
@@ -38,6 +39,7 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
             </div>
 
             <div className="admin-stat-card">
+              <Package size={120} color="#fdba74" className="stat-watermark" />
               <div className="stat-icon-wrapper">
                 <Package size={24} color="#fdba74" />
               </div>
@@ -46,18 +48,20 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
             </div>
 
             <div className="admin-stat-card">
+              <BarChart2 size={120} color="#86efac" className="stat-watermark" />
               <div className="stat-icon-wrapper">
                 <BarChart2 size={24} color="#86efac" />
               </div>
-              <div className="stat-value">Rp 4,2 Miliar</div>
+              <div className="stat-value">Rp 4,12 Miliar</div>
               <div className="stat-label">Total Transaksi</div>
             </div>
 
             <div className="admin-stat-card">
+              <Users size={120} color="#fcd34d" className="stat-watermark" />
               <div className="stat-icon-wrapper">
                 <Users size={24} color="#fcd34d" />
               </div>
-              <div className="stat-value">890 affiliate</div>
+              <div className="stat-value">3.890 affiliate</div>
               <div className="stat-label">Affiliate Aktif</div>
             </div>
           </div>
@@ -75,7 +79,7 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
 
         <div className="admin-form-container">
           <div className="admin-form-box">
-            <h2>Selamat Datang</h2>
+            <h2>Sign in Admin</h2>
             <p className="subtitle">Masuk ke panel admin Saudagar UII Marketplace</p>
 
             <div className="form-group">

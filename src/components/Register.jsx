@@ -28,10 +28,10 @@ export default function Register({ onBack, onLogin }) {
         </div>
         
         <div className="register-hero-text">
-          <h1>Mulai<br/>Langkah Baru.</h1>
+          <h1>Ayo Mulai <br/>Langkah Baru.</h1>
           <p>
-            Bergabunglah dengan ribuan pembeli dan UMKM inspiratif di seluruh nusantara. 
-            Jelajahi produk lokal berkualitas tinggi, didukung oleh teknologi AI yang cerdas.
+            Bergabunglah dengan ribuan customer dan merchant UMKM inspiratif di seluruh nusantara. 
+            Jelajahi produk lokal berkualitas tinggi, didukung oleh teknologi AI yang cerdas dan aman.
           </p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function Register({ onBack, onLogin }) {
 
         <div className="register-right-inner">
           <div className="register-header fade-in-up delay-1">
-            <h2>Buat Akun</h2>
+            <h2>Create Account</h2>
             <p>Satu akun Saudagar UII untuk semua kebutuhan Anda.</p>
           </div>
 
