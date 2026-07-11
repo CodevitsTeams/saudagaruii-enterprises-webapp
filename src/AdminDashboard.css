@@ -1229,12 +1229,22 @@
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  position: relative;
 }
 
 .settings-card:hover {
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
   transform: translateY(-2px);
   border-color: rgba(0,0,0,0.1);
+}
+
+.settings-card-header, .settings-body, .settings-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.settings-card .kpi-bg-icon {
+  z-index: 2;
 }
 
 .settings-card-header {
@@ -1647,7 +1657,7 @@
   position: absolute; right: -20px; bottom: -20px; opacity: 0.12; 
   transform: rotate(-15deg); pointer-events: none; z-index: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.order-kpi-card:hover .kpi-bg-icon, .kpi-card:hover .kpi-bg-icon, .m-status-card:hover .kpi-bg-icon, .wa-kpi-card:hover .kpi-bg-icon, .bi-kpi-card:hover .kpi-bg-icon, .ai-card:hover .kpi-bg-icon {
+.order-kpi-card:hover .kpi-bg-icon, .kpi-card:hover .kpi-bg-icon, .m-status-card:hover .kpi-bg-icon, .wa-kpi-card:hover .kpi-bg-icon, .bi-kpi-card:hover .kpi-bg-icon, .ai-card:hover .kpi-bg-icon, .settings-card:hover .kpi-bg-icon {
   transform: scale(1.1) rotate(0deg); opacity: 0.18;
 }
 .order-kpi-card .kpi-content, .order-kpi-card .kpi-icon-wrapper, .order-kpi-card .kpi-trend {

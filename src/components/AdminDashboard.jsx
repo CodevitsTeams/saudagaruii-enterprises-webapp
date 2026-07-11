@@ -2242,6 +2242,7 @@ export default function AdminDashboard() {
 
                 {/* SETTINGS CARD 1 */}
                 <div className="settings-card">
+                  <div className="kpi-bg-icon"><Bot size={110} color="#9333ea" strokeWidth={1} /></div>
                   <div className="settings-card-header">
                     <div className="settings-icon bg-purple-light"><Bot size={18} color="#9333ea" /></div>
                     <h3>WhatsApp AI Integration</h3>
@@ -2281,6 +2282,7 @@ export default function AdminDashboard() {
 
                 {/* SETTINGS CARD 2 */}
                 <div className="settings-card">
+                  <div className="kpi-bg-icon"><Smartphone size={110} color="#2563eb" strokeWidth={1} /></div>
                   <div className="settings-card-header">
                     <div className="settings-icon bg-blue-light"><Smartphone size={18} color="#2563eb" /></div>
                     <h3>Payment Gateway</h3>
@@ -2310,6 +2312,7 @@ export default function AdminDashboard() {
 
                 {/* SETTINGS CARD 3 */}
                 <div className="settings-card">
+                  <div className="kpi-bg-icon"><Package size={110} color="#ea580c" strokeWidth={1} /></div>
                   <div className="settings-card-header">
                     <div className="settings-icon bg-orange-light"><Package size={18} color="#ea580c" /></div>
                     <h3>Logistik & Pengiriman</h3>
@@ -2339,8 +2342,9 @@ export default function AdminDashboard() {
 
                 {/* SETTINGS CARD 4 */}
                 <div className="settings-card">
+                  <div className="kpi-bg-icon"><Shield size={110} color="#ef4444" strokeWidth={1} /></div>
                   <div className="settings-card-header">
-                    <div className="settings-icon bg-red-light"><CheckCircle2 size={18} color="#ef4444" /></div>
+                    <div className="settings-icon bg-red-light"><Shield size={18} color="#ef4444" /></div>
                     <h3>Keamanan</h3>
                   </div>
                   <div className="settings-body">
