@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, X, Send, Bot, ChevronRight } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, ChevronRight, User, Bot } from 'lucide-react';
 import '../AIChat.css';
 
 export default function AIChatAssistant() {
@@ -52,23 +52,28 @@ export default function AIChatAssistant() {
         <div className="ai-chat-window animate-slide-up">
           <div className="chat-header">
             <div className="chat-header-info">
-              <div className="bot-avatar">
-                <Bot size={20} />
-              </div>
-              <div>
-                <h4>Saudagar AI Assistant</h4>
-                <span className="online-status">● Online 24/7</span>
-              </div>
+              <h4>Saudagar AI</h4>
+              <span className="ai-version">v2.0</span>
             </div>
             <button className="close-btn" onClick={() => setIsOpen(false)}>
-              <X size={20} />
+              <X size={20} strokeWidth={2} />
             </button>
           </div>
 
           <div className="chat-body">
             {messages.map((msg) => (
-              <div key={msg.id} className={`chat-bubble-wrapper ${msg.sender}`}>
-                <div className="chat-bubble">
+              <div key={msg.id} className={`chat-message-row ${msg.sender}`}>
+                {msg.sender === 'bot' && (
+                  <div className="message-avatar bot">
+                    <Sparkles size={16} strokeWidth={2.5} />
+                  </div>
+                )}
+                {msg.sender === 'user' && (
+                  <div className="message-avatar user">
+                    <User size={16} />
+                  </div>
+                )}
+                <div className="message-content">
                   {msg.text}
                 </div>
               </div>
@@ -77,27 +82,36 @@ export default function AIChatAssistant() {
             {/* FAQ Chips */}
             {messages.length === 1 && (
               <div className="faq-chips">
-                <p className="faq-title">Pertanyaan Populer:</p>
+                <div className="suggestions-grid">
                 {faqs.map((faq, i) => (
-                  <button key={i} className="faq-chip" onClick={() => handleSend(faq)}>
-                    {faq} <ChevronRight size={14} />
+                  <button key={i} className="suggestion-pill" onClick={() => handleSend(faq)}>
+                    {faq}
                   </button>
                 ))}
+                </div>
               </div>
             )}
           </div>
 
           <div className="chat-footer">
-            <input 
-              type="text" 
-              placeholder="Ketik pesan Anda..." 
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend(inputValue)}
-            />
-            <button className="send-btn" onClick={() => handleSend(inputValue)}>
-              <Send size={18} />
-            </button>
+            <div className="input-container">
+              <input 
+                type="text" 
+                placeholder="Message Saudagar AI..." 
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSend(inputValue)}
+              />
+              <button 
+                className={`send-action-btn ${inputValue.trim() ? 'active' : ''}`} 
+                onClick={() => handleSend(inputValue)}
+              >
+                <Send size={16} strokeWidth={2.5} />
+              </button>
+            </div>
+            <div className="chat-disclaimer">
+              AI can make mistakes. Consider verifying important information.
+            </div>
           </div>
         </div>
       )}
