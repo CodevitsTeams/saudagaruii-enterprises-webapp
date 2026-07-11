@@ -1,32 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageSquare, Zap, Handshake } from 'lucide-react';
 
 export default function FigmaHero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      id: 1,
+      tag: 'UMKM NAIK KELAS & AI POWERED',
+      title: 'Produk Lokal Terbaik<br />dari Penjuru Nusantara',
+      subtitle: 'Temukan ribuan produk pilihan UMKM (Bahan berkualitas, fashion, kerajinan, dan lain-lain). Dijamin original 100%.',
+      bgImage: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop',
+      btn1: 'Belanja Sekarang',
+      btn2: 'Jual Produkmu',
+      stats: [
+        { value: '12.400+', label: 'Total Transaksi' },
+        { value: '2.100+', label: 'Total Merchant' },
+        { value: '98%', label: 'Rating Kepuasan' }
+      ]
+    },
+    {
+      id: 2,
+      tag: 'TEKNOLOGI AI TERDEPAN',
+      title: 'Jualan Makin Mudah<br />Dengan Asisten Cerdas',
+      subtitle: 'Tingkatkan omzet dengan AI Photo Studio, AI Copywriter, dan Chatbot cerdas yang siap melayani 24/7.',
+      bgImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop',
+      btn1: 'Pelajari Fitur AI',
+      btn2: 'Mulai Jualan',
+      stats: [
+        { value: '3x', label: 'Lipat Penjualan' },
+        { value: '24/7', label: 'CS Otomatis' },
+        { value: '4K', label: 'Resolusi Foto AI' }
+      ]
+    },
+    {
+      id: 3,
+      tag: 'EKOSISTEM KAMPUS UII',
+      title: 'Dukung Karya<br />Mahasiswa & Alumni',
+      subtitle: 'Platform resmi yang menghubungkan karya inovatif civitas akademika UII dengan pasar nasional.',
+      bgImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop',
+      btn1: 'Dukung Mahasiswa',
+      btn2: 'Gabung Mitra',
+      stats: [
+        { value: '5.000+', label: 'Mahasiswa Aktif' },
+        { value: '500+', label: 'Bisnis Alumni' },
+        { value: '10+', label: 'Fakultas Terlibat' }
+      ]
+    },
+    {
+      id: 4,
+      tag: 'PROMO SPESIAL',
+      title: 'Kejutan Diskon<br />Setiap Harinya',
+      subtitle: 'Nikmati gratis ongkir, voucher eksklusif, dan cashback melimpah khusus untuk transaksi di Saudagar UII.',
+      bgImage: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1200&auto=format&fit=crop',
+      btn1: 'Klaim Promo',
+      btn2: 'Lihat Katalog',
+      stats: [
+        { value: '50%', label: 'Diskon Maksimal' },
+        { value: 'Rp0', label: 'Gratis Ongkir' },
+        { value: '2x', label: 'Poin Cashback' }
+      ]
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <section className="hero-grid-section animate-fade-in">
       <div className="hero-main-banner">
-        <div className="hmb-content">
-          <span className="hmb-tag">UMKM NAIK KELAS & AI POWERED</span>
-          <h1 className="hmb-title">Produk Lokal Terbaik<br />dari Penjuru Nusantara</h1>
-          <p className="hmb-subtitle">Temukan ribuan produk pilihan UMKM (Bahan berkualitas, fashion, kerajinan, dan lain-lain). Dijamin original 100%.</p>
-          <div className="hmb-buttons">
-            <button className="hmb-btn">Belanja Sekarang</button>
-            <button className="hmb-btn-outline">Jual Produkmu</button>
-          </div>
+        {slides.map((slide, index) => (
+          <div 
+            key={slide.id} 
+            className={`slide-bg ${index === currentSlide ? 'active' : ''}`}
+            style={{
+              backgroundImage: `linear-gradient(to right, rgba(11, 73, 49, 0.9) 0%, rgba(11, 73, 49, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url('${slide.bgImage}')`
+            }}
+          >
+            <div className="hmb-content">
+              <span className="hmb-tag">{slide.tag}</span>
+              <h1 className="hmb-title" dangerouslySetInnerHTML={{ __html: slide.title }}></h1>
+              <p className="hmb-subtitle">{slide.subtitle}</p>
+              <div className="hmb-buttons">
+                <button className="hmb-btn">{slide.btn1}</button>
+                <button className="hmb-btn-outline">{slide.btn2}</button>
+              </div>
 
-          <div className="hmb-stats">
-            <div className="stat"><strong>12.400+</strong><span>Total Transaksi</span></div>
-            <div className="stat"><strong>2.100+</strong><span>Total Merchant</span></div>
-            <div className="stat"><strong>98%</strong><span>Rating Kepuasan</span></div>
+              <div className="hmb-stats">
+                {slide.stats.map((s, i) => (
+                  <div className="stat" key={i}><strong>{s.value}</strong><span>{s.label}</span></div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
         
         {/* Pagination Dots */}
         <div className="hmb-pagination">
-          <span className="dot active"></span>
-          <span className="dot"></span>
-          <span className="dot"></span>
-          <span className="dot"></span>
+          {slides.map((_, idx) => (
+            <span 
+              key={idx} 
+              className={`dot ${idx === currentSlide ? 'active' : ''}`}
+              onClick={() => setCurrentSlide(idx)}
+            ></span>
+          ))}
         </div>
       </div>
 

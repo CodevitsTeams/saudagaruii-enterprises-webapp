@@ -14,16 +14,30 @@ body {
 
 .hero-main-banner {
   border-radius: 24px;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-size: cover;
   background-position: center;
   padding: 3rem;
   display: flex;
   align-items: flex-end;
   color: #fff;
-  min-height: 400px;
-  position: relative;
-  overflow: hidden;
-  background-image: linear-gradient(to right, rgba(11, 73, 49, 0.9) 0%, rgba(11, 73, 49, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop');
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+  z-index: 1;
+}
+
+.slide-bg.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
 }
 
 .hmb-content {
@@ -138,6 +152,12 @@ body {
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.3s;
+}
+
+.hmb-pagination .dot.active {
+  width: 24px;
+  background: #fff;
+  border-radius: 8px;
 }
 
 .hmb-pagination .dot.active {

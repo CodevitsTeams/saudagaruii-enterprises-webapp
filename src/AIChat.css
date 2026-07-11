@@ -6,6 +6,39 @@
   z-index: 9999;
 }
 
+.fab-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fab-tooltip {
+  background: white;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Tooltip tail pointing right */
+.fab-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
 .ai-chat-fab {
   width: 60px;
   height: 60px;
@@ -17,6 +50,8 @@
   justify-content: center;
   box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 2;
 }
 
 .ai-chat-fab:hover {

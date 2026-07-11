@@ -37,9 +37,14 @@ export default function AIChatAssistant() {
     <div className="ai-chat-container">
       {/* Floating Button */}
       {!isOpen && (
-        <button className="ai-chat-fab animate-bounce-slight" onClick={() => setIsOpen(true)}>
-          <Bot size={28} />
-        </button>
+        <div className="fab-container">
+          <div className="fab-tooltip animate-fade-in delay-200">
+            Butuh bantuan?
+          </div>
+          <button className="ai-chat-fab animate-bounce-slight" onClick={() => setIsOpen(true)}>
+            <Bot size={28} />
+          </button>
+        </div>
       )}
 
       {/* Chat Window */}
