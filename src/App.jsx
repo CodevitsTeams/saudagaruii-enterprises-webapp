@@ -315,6 +315,9 @@ function App() {
 
             <div className="prof-list">
               <div className="prof-card">
+                <div className="watermark-bg-icon">
+                  <Volume2 size={100} strokeWidth={1} color="#cbd5e1" />
+                </div>
                 <div className="prof-card-icon bg-light-blue"><Volume2 size={20} color="#2563eb" /></div>
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill blue">INFO</span> 4 Jun 2026</div>
@@ -325,6 +328,9 @@ function App() {
               </div>
 
               <div className="prof-card">
+                <div className="watermark-bg-icon">
+                  <Star size={100} strokeWidth={1} color="#cbd5e1" />
+                </div>
                 <div className="prof-card-icon bg-light-yellow"><Star size={20} color="#d97706" /></div>
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill yellow">PROMO</span> 2 Jun 2026</div>
@@ -335,6 +341,9 @@ function App() {
               </div>
 
               <div className="prof-card">
+                <div className="watermark-bg-icon">
+                  <Sparkles size={100} strokeWidth={1} color="#cbd5e1" />
+                </div>
                 <div className="prof-card-icon bg-light-purple"><Sparkles size={20} color="#9333ea" /></div>
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill purple">UPDATE AI</span> 1 Jun 2026</div>
