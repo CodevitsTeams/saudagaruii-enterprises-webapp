@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Heart, Bell, User, ChevronRight, Volume2, Star, Sparkles, Tag, Truck, Link2, SearchIcon, ChevronLeft, Zap, Coffee, Shirt, Scissors, Laptop, BookOpen, Wrench, Smartphone, Globe, Mail, Phone, MessageSquare, Plus, CheckCircle2 } from 'lucide-react';
+import { Search, ShoppingCart, Heart, Bell, User, ChevronRight, Volume2, Star, Sparkles, Tag, Truck, Link2, SearchIcon, ChevronLeft, Zap, Coffee, Shirt, Scissors, Laptop, BookOpen, Wrench, Smartphone, Globe, Mail, Phone, MessageSquare, Plus, CheckCircle2, MapPin } from 'lucide-react';
 import './App.css';
 import './Figma.css';
 import FigmaHero from './components/FigmaHero';
@@ -888,6 +888,146 @@ function App() {
           </div>
         </section>
 
+        {/* Official Stores Section */}
+        <section className="official-stores-section">
+          <div className="section-header">
+            <div className="section-title">
+              <div className="title-bar orange"></div>
+              <div>
+                <h2>Toko Populer & Official Merchant</h2>
+                <p className="subtitle">Merchant dengan ulasan terbaik dan pelayanan memuaskan</p>
+              </div>
+            </div>
+            <a href="#" className="see-all orange-text">Semua Toko &rarr;</a>
+          </div>
+
+          <div className="stores-grid">
+            {/* Store 1 */}
+            <div className="store-card">
+              <div className="store-banner" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80')" }}></div>
+              <div className="store-info-container">
+                <div className="store-logo-wrapper">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Logo" className="store-logo" />
+                  <span className="store-badge">MALL</span>
+                </div>
+                <div className="store-name-area">
+                  <h3>Koperasi UII Official</h3>
+                  <div className="store-category">Kebutuhan Kampus & Merchandise</div>
+                  <div className="store-location"><MapPin size={12} color="#64748b" /> Kampus Terpadu UII</div>
+                </div>
+                <div className="store-stats">
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">150+</span>
+                    <span className="store-stat-label">Produk</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value star">4.9/5</span>
+                    <span className="store-stat-label">Rating</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">98%</span>
+                    <span className="store-stat-label">Balas Chat</span>
+                  </div>
+                </div>
+                <button className="btn-visit-store">Kunjungi Toko</button>
+              </div>
+            </div>
+
+            {/* Store 2 */}
+            <div className="store-card">
+              <div className="store-banner" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=600&q=80')" }}></div>
+              <div className="store-info-container">
+                <div className="store-logo-wrapper">
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80" alt="Logo" className="store-logo" />
+                  <span className="store-badge" style={{ background: '#f59e0b' }}>STAR+</span>
+                </div>
+                <div className="store-name-area">
+                  <h3>Thrift Store Jogja</h3>
+                  <div className="store-category">Fashion & Apparel</div>
+                  <div className="store-location"><MapPin size={12} color="#64748b" /> Condongcatur</div>
+                </div>
+                <div className="store-stats">
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">85+</span>
+                    <span className="store-stat-label">Produk</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value star">4.8/5</span>
+                    <span className="store-stat-label">Rating</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">95%</span>
+                    <span className="store-stat-label">Balas Chat</span>
+                  </div>
+                </div>
+                <button className="btn-visit-store">Kunjungi Toko</button>
+              </div>
+            </div>
+
+            {/* Store 3 */}
+            <div className="store-card">
+              <div className="store-banner" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=80')" }}></div>
+              <div className="store-info-container">
+                <div className="store-logo-wrapper">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80" alt="Logo" className="store-logo" />
+                  <span className="store-badge" style={{ background: '#f59e0b' }}>STAR+</span>
+                </div>
+                <div className="store-name-area">
+                  <h3>Hijab Premium Saudagar</h3>
+                  <div className="store-category">Pakaian Muslim & Hijab</div>
+                  <div className="store-location"><MapPin size={12} color="#64748b" /> Sleman</div>
+                </div>
+                <div className="store-stats">
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">42</span>
+                    <span className="store-stat-label">Produk</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value star">4.9/5</span>
+                    <span className="store-stat-label">Rating</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">99%</span>
+                    <span className="store-stat-label">Balas Chat</span>
+                  </div>
+                </div>
+                <button className="btn-visit-store">Kunjungi Toko</button>
+              </div>
+            </div>
+
+            {/* Store 4 */}
+            <div className="store-card">
+              <div className="store-banner" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=600&q=80')" }}></div>
+              <div className="store-info-container">
+                <div className="store-logo-wrapper">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" alt="Logo" className="store-logo" />
+                  <span className="store-badge">MALL</span>
+                </div>
+                <div className="store-name-area">
+                  <h3>Gadget & Acc Kampus</h3>
+                  <div className="store-category">Gadget & Technology</div>
+                  <div className="store-location"><MapPin size={12} color="#64748b" /> Seturan</div>
+                </div>
+                <div className="store-stats">
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">210+</span>
+                    <span className="store-stat-label">Produk</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value star">4.7/5</span>
+                    <span className="store-stat-label">Rating</span>
+                  </div>
+                  <div className="store-stat-item">
+                    <span className="store-stat-value">85%</span>
+                    <span className="store-stat-label">Balas Chat</span>
+                  </div>
+                </div>
+                <button className="btn-visit-store">Kunjungi Toko</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
       </main>
 
       {/* Trust & AI Ecosystem */}
