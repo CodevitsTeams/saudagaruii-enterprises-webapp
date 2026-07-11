@@ -1,0 +1,341 @@
+.register-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+.register-left {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .register-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
+  }
+}
+
+.register-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  z-index: 1;
+  transition: transform 10s ease-in-out;
+}
+
+.register-left:hover .register-bg-image {
+  transform: scale(1.05);
+}
+
+.register-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(6, 78, 59, 0.4) 100%);
+  z-index: 2;
+}
+
+.register-left-content {
+  position: relative;
+  z-index: 3;
+}
+
+.register-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.register-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.register-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-logo-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.register-logo-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 2px;
+}
+
+.register-hero-text {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  margin-bottom: 4rem;
+}
+
+.register-hero-text h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.register-hero-text p {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  max-width: 80%;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* RIGHT PANEL */
+.register-right {
+  flex: 1;
+  max-width: 100%;
+  background: #fff;
+  color: #1d1d1f;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .register-right {
+    max-width: 600px;
+  }
+}
+
+.register-right-inner {
+  padding: 3rem 2rem;
+  max-width: 480px;
+  margin: auto;
+  width: 100%;
+}
+
+.btn-back-minimal {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.btn-back-minimal:hover {
+  color: #1d1d1f;
+  background: #f1f5f9;
+}
+
+.register-header {
+  margin-bottom: 2.5rem;
+  margin-top: 2rem;
+}
+
+.register-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  color: #1d1d1f;
+}
+
+.register-header p {
+  font-size: 1.05rem;
+  color: #64748b;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.register-input-group {
+  position: relative;
+}
+
+.register-input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.register-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-icon-left {
+  position: absolute;
+  left: 1rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.register-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #1d1d1f;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.register-input:focus {
+  background: #fff;
+  border-color: #064e3b;
+  box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.1);
+}
+
+.register-btn-primary {
+  background: #1d1d1f;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-btn-primary:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.register-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 2rem 0;
+}
+
+.register-divider::before,
+.register-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.register-divider:not(:empty)::before {
+  margin-right: 1rem;
+}
+
+.register-divider:not(:empty)::after {
+  margin-left: 1rem;
+}
+
+.register-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d1d1f;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 1rem;
+}
+
+.register-social-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.register-footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.register-footer a {
+  color: #064e3b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

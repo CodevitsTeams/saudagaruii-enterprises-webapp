@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronLeft, Bot, Package, BarChart2, Users, Mail, Eye, EyeOff, Lock } from 'lucide-react';
 import '../AdminLogin.css';
 
-export default function AdminLogin({ onBack, onLogin }) {
+export default function AdminLogin({ onBack, onLogin, onRegister }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="admin-login-container">
@@ -139,7 +139,7 @@ export default function AdminLogin({ onBack, onLogin }) {
 
             <div className="admin-footer-links" style={{ marginTop: '1.5rem', textAlign: 'center' }}>
               <span style={{ color: '#64748b', fontSize: '0.9rem' }}>
-                Belum mempunyai akun? <a href="#" style={{ color: '#064e3b', fontWeight: '600', textDecoration: 'none' }}>Daftar di sini</a>
+                Belum mempunyai akun? <a href="#" onClick={(e) => { e.preventDefault(); if(onRegister) onRegister(); }} style={{ color: '#064e3b', fontWeight: '600', textDecoration: 'none' }}>Daftar di sini</a>
               </span>
             </div>
 

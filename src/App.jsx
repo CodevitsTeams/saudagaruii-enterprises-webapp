@@ -11,6 +11,7 @@ import TrustEcosystem from './components/TrustEcosystem';
 import AIChatAssistant from './components/AIChatAssistant';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
+import Register from './components/Register';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('marketplace');
@@ -103,11 +104,15 @@ function App() {
   };
 
   if (currentPage === 'admin_login') {
-    return <AdminLogin onBack={() => setCurrentPage('marketplace')} onLogin={() => setCurrentPage('dashboard')} />;
+    return <AdminLogin onBack={() => setCurrentPage('marketplace')} onLogin={() => setCurrentPage('dashboard')} onRegister={() => setCurrentPage('register')} />;
   }
 
   if (currentPage === 'dashboard') {
     return <AdminDashboard />;
+  }
+
+  if (currentPage === 'register') {
+    return <Register onBack={() => setCurrentPage('marketplace')} onLogin={() => setCurrentPage('admin_login')} />;
   }
 
   return (
@@ -289,7 +294,7 @@ function App() {
               <button className="btn-icon-text" onClick={() => setCurrentPage('admin_login')}>
                 <User size={18} /> Masuk
               </button>
-              <button className="btn-primary">Daftar</button>
+              <button className="btn-primary" onClick={() => setCurrentPage('register')}>Daftar</button>
             </div>
           </div>
         </div>
