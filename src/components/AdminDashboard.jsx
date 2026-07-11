@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Search, Bell, LayoutDashboard, Store, Box, ShoppingCart, Heart,
   Target, Bot, Smartphone, BarChart2, Settings, Menu, TrendingUp, Package, Users, Plus, Download, Send, CheckCircle2, Eye, EyeOff,
-  Check, X, RotateCcw, Edit2
+  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail
 } from 'lucide-react';
 import '../AdminDashboard.css';
 
@@ -58,6 +58,56 @@ export default function AdminDashboard() {
     { id: 'M-0423', name: 'Herbal Nusantara', date: '9 Jul 2024', owner: 'Dewi Kartika', phone: '0857-1234-5678', category: 'Herbal', city: 'Semarang', completeness: 100, status: 'Menunggu' },
     { id: 'M-0424', name: 'Studio Kerajinan Tangan', date: '9 Jul 2024', owner: 'Ahmad Fauzi', phone: '0878-4567-8901', category: 'Kerajinan', city: 'Bandung', completeness: 88, status: 'Menunggu' },
     { id: 'M-0425', name: 'Kopi Gunung Merapi', date: '8 Jul 2024', owner: 'Slamet Riyadi', phone: '0819-2345-6789', category: 'Kuliner', city: 'Magelang', completeness: 100, status: 'Disetujui' },
+  ];
+
+  const [orderCurrentPage, setOrderCurrentPage] = useState(1);
+  const orderItemsPerPage = 50;
+
+  const orderData = Array.from({ length: 200 }).map((_, i) => {
+    const statuses = ['Dikirim', 'Dibayar', 'Diproses', 'Selesai', 'Dibatalkan', 'Menunggu Bayar'];
+    const buyers = ['Andi Wijaya', 'Siti Rahayu', 'Budi Santoso', 'Dewi Kusuma', 'Rizal Hakim', 'Joko Susilo', 'Rina Wati'];
+    const products = ['Batik Tulis Motif Parang', 'Kopi Arabica Flores', 'Minyak Kelapa VCO', 'Tas Rajut Handmade', 'Sambal Matah Bali'];
+    const merchants = ['Batik Sekar Arum', 'Kopi Nusantara', 'Herbal Sejati', 'Rajut Cantik', 'Dapur Bu Ketut'];
+    
+    return {
+      id: `#ORD-${10000 - i}`,
+      buyer: buyers[i % buyers.length],
+      product: products[i % products.length],
+      merchant: merchants[i % merchants.length],
+      total: `Rp ${((i % 10) + 1) * 45}.000`,
+      status: statuses[i % statuses.length],
+      date: `10 Jul 2024`
+    };
+  });
+
+  const totalOrderPages = Math.ceil(orderData.length / orderItemsPerPage);
+  const paginatedOrders = orderData.slice((orderCurrentPage - 1) * orderItemsPerPage, orderCurrentPage * orderItemsPerPage);
+
+  const affiliateData = [
+    { rank: 1, name: 'Agung Prasetyo', code: 'AGP-2024', clicks: '4.521', orders: 312, omzet: 'Rp 42.8 Jt', komisi: 'Rp 6.4 Jt', convRate: '6.9%' },
+    { rank: 2, name: 'Maya Indira', code: 'MAY-2024', clicks: '3.210', orders: 241, omzet: 'Rp 31.2 Jt', komisi: 'Rp 4.7 Jt', convRate: '7.5%' },
+    { rank: 3, name: 'Rian Mahfudz', code: 'RMH-2024', clicks: '2.890', orders: 198, omzet: 'Rp 27.6 Jt', komisi: 'Rp 4.1 Jt', convRate: '6.8%' },
+    { rank: 4, name: 'Sari Dewi Pratiwi', code: 'SDP-2024', clicks: '2.340', orders: 167, omzet: 'Rp 22.1 Jt', komisi: 'Rp 3.3 Jt', convRate: '7.1%' },
+    { rank: 5, name: 'Hendra Gunawan', code: 'HGN-2024', clicks: '1.980', orders: 134, omzet: 'Rp 18.7 Jt', komisi: 'Rp 2.8 Jt', convRate: '6.7%' },
+  ];
+
+  const affiliateChartData = [
+    { day: 'Sen', clicks: 420, conv: 35, clickH: '40%', convH: '10%' },
+    { day: 'Sel', clicks: 580, conv: 52, clickH: '50%', convH: '15%' },
+    { day: 'Rab', clicks: 610, conv: 64, clickH: '60%', convH: '18%' },
+    { day: 'Kam', clicks: 490, conv: 41, clickH: '45%', convH: '12%' },
+    { day: 'Jum', clicks: 820, conv: 75, clickH: '75%', convH: '20%' },
+    { day: 'Sab', clicks: 1050, conv: 98, clickH: '90%', convH: '25%' },
+    { day: 'Min', clicks: 710, conv: 60, clickH: '65%', convH: '15%' },
+  ];
+
+  const customerData = [
+    { id: 'CUST-001', name: 'Ahmad Fauzi', email: 'ahmad.f@gmail.com', phone: '0812-3456-7890', orders: 12, spent: 'Rp 1.450.000', lastActive: '2 jam lalu', status: 'Aktif', segment: 'Gold' },
+    { id: 'CUST-002', name: 'Siti Aminah', email: 'sitia.mina@yahoo.com', phone: '0856-7890-1234', orders: 5, spent: 'Rp 650.000', lastActive: '5 jam lalu', status: 'Aktif', segment: 'Silver' },
+    { id: 'CUST-003', name: 'Budi Prakoso', email: 'bprakoso@perusahaan.co.id', phone: '0811-2233-4455', orders: 1, spent: 'Rp 120.000', lastActive: '1 hari lalu', status: 'Tidak Aktif', segment: 'Bronze' },
+    { id: 'CUST-004', name: 'Ratna Sari', email: 'ratnasari.jogja@gmail.com', phone: '0878-1122-3344', orders: 8, spent: 'Rp 1.100.000', lastActive: 'Baru saja', status: 'Aktif', segment: 'Gold' },
+    { id: 'CUST-005', name: 'Dwi Saputra', email: 'dwisaputra99@gmail.com', phone: '0899-8877-6655', orders: 3, spent: 'Rp 340.000', lastActive: '3 hari lalu', status: 'Aktif', segment: 'Bronze' },
+    { id: 'CUST-006', name: 'Mega Wati', email: 'megaw.kopi@gmail.com', phone: '0813-5566-7788', orders: 24, spent: 'Rp 3.200.000', lastActive: '30 menit lalu', status: 'Aktif', segment: 'Platinum' },
   ];
 
   // Interactive Chart State
@@ -139,14 +189,14 @@ export default function AdminDashboard() {
             </div>
             <span className="nav-badge">37</span>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'orders' ? 'active' : ''}`} onClick={() => setActiveView('orders')}>
             <div className="nav-item-left">
               <ShoppingCart size={20} className="nav-icon" />
               <span>Pesanan</span>
             </div>
             <span className="nav-badge">8</span>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'customers' ? 'active' : ''}`} onClick={() => setActiveView('customers')}>
             <div className="nav-item-left">
               <Users size={20} className="nav-icon" />
               <span>Customers</span>
@@ -155,7 +205,7 @@ export default function AdminDashboard() {
 
           <div className="nav-divider"></div>
 
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'affiliate' ? 'active' : ''}`} onClick={() => setActiveView('affiliate')}>
             <div className="nav-item-left">
               <Heart size={20} className="nav-icon" />
               <span>Affiliate</span>
@@ -342,12 +392,7 @@ export default function AdminDashboard() {
 
                 {/* Card 1 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,40 C20,30 40,35 60,20 C80,5 100,25 120,10 C140,-5 160,15 180,5 L200,0 L200,50 L0,50 Z" fill="rgba(16, 185, 129, 0.2)" />
-                      <path d="M0,40 C20,30 40,35 60,20 C80,5 100,25 120,10 C140,-5 160,15 180,5" fill="none" stroke="#10b981" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Banknote size={110} color="#d97706" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#fef3c7' }}>
@@ -365,12 +410,7 @@ export default function AdminDashboard() {
 
                 {/* Card 2 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,40 C40,40 60,15 100,10 C140,5 160,20 200,0 L200,50 L0,50 Z" fill="rgba(99, 102, 241, 0.2)" />
-                      <path d="M0,40 C40,40 60,15 100,10 C140,5 160,20 200,0" fill="none" stroke="#6366f1" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Store size={110} color="#4f46e5" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#e0e7ff' }}>
@@ -388,12 +428,7 @@ export default function AdminDashboard() {
 
                 {/* Card 3 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,20 C40,30 80,10 120,15 C160,20 180,5 200,0 L200,50 L0,50 Z" fill="rgba(245, 158, 11, 0.2)" />
-                      <path d="M0,20 C40,30 80,10 120,15 C160,20 180,5 200,0" fill="none" stroke="#f59e0b" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Package size={110} color="#ea580c" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#ffedd5' }}>
@@ -411,12 +446,7 @@ export default function AdminDashboard() {
 
                 {/* Card 4 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,35 C50,30 80,20 120,25 C160,30 180,10 200,5 L200,50 L0,50 Z" fill="rgba(168, 85, 247, 0.2)" />
-                      <path d="M0,35 C50,30 80,20 120,25 C160,30 180,10 200,5" fill="none" stroke="#a855f7" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Users size={110} color="#9333ea" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#f3e8ff' }}>
@@ -434,12 +464,7 @@ export default function AdminDashboard() {
 
                 {/* Card 5 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,40 C40,40 60,15 100,10 C140,5 160,20 200,0 L200,50 L0,50 Z" fill="rgba(59, 130, 246, 0.2)" />
-                      <path d="M0,40 C40,40 60,15 100,10 C140,5 160,20 200,0" fill="none" stroke="#3b82f6" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><ShoppingCart size={110} color="#2563eb" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#dbeafe' }}>
@@ -457,12 +482,7 @@ export default function AdminDashboard() {
 
                 {/* Card 6 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,20 C40,30 80,10 120,15 C160,20 180,5 200,0 L200,50 L0,50 Z" fill="rgba(236, 72, 153, 0.2)" />
-                      <path d="M0,20 C40,30 80,10 120,15 C160,20 180,5 200,0" fill="none" stroke="#ec4899" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Target size={110} color="#db2777" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#fce7f3' }}>
@@ -480,12 +500,7 @@ export default function AdminDashboard() {
 
                 {/* Card 7 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,40 C20,30 40,35 60,20 C80,5 100,25 120,10 C140,-5 160,15 180,5 L200,0 L200,50 L0,50 Z" fill="rgba(14, 165, 233, 0.2)" />
-                      <path d="M0,40 C20,30 40,35 60,20 C80,5 100,25 120,10 C140,-5 160,15 180,5" fill="none" stroke="#0ea5e9" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><Smartphone size={110} color="#0284c7" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#e0f2fe' }}>
@@ -503,12 +518,7 @@ export default function AdminDashboard() {
 
                 {/* Card 8 */}
                 <div className="kpi-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div className="kpi-sparkline" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '35%', zIndex: 0, opacity: 0.3 }}>
-                    <svg width="100%" height="100%" preserveAspectRatio="none">
-                      <path d="M0,35 C50,30 80,20 120,25 C160,30 180,10 200,5 L200,50 L0,50 Z" fill="rgba(20, 184, 166, 0.2)" />
-                      <path d="M0,35 C50,30 80,20 120,25 C160,30 180,10 200,5" fill="none" stroke="#14b8a6" strokeWidth="2" />
-                    </svg>
-                  </div>
+                  <div className="kpi-bg-icon"><BarChart2 size={110} color="#0d9488" strokeWidth={1} /></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="kpi-card-header">
                       <div className="kpi-icon-box" style={{ background: '#ccfbf1' }}>
@@ -812,29 +822,33 @@ export default function AdminDashboard() {
                   className={`m-status-card ${activeMerchantTab === 'menunggu' ? 'active-yellow' : ''}`}
                   onClick={() => setActiveMerchantTab('menunggu')}
                 >
-                  <div className="m-card-number text-yellow">14</div>
-                  <div className="m-card-label text-yellow">Menunggu</div>
+                  <div className="kpi-bg-icon"><Clock size={110} color="#eab308" strokeWidth={1} /></div>
+                  <div className="m-card-number text-yellow" style={{position: 'relative', zIndex: 1}}>14</div>
+                  <div className="m-card-label text-yellow" style={{position: 'relative', zIndex: 1}}>Menunggu</div>
                 </div>
                 <div
                   className={`m-status-card ${activeMerchantTab === 'revisi' ? 'active-red' : ''}`}
                   onClick={() => setActiveMerchantTab('revisi')}
                 >
-                  <div className="m-card-number text-red">3</div>
-                  <div className="m-card-label text-red">Perlu Revisi</div>
+                  <div className="kpi-bg-icon"><RotateCcw size={110} color="#ef4444" strokeWidth={1} /></div>
+                  <div className="m-card-number text-red" style={{position: 'relative', zIndex: 1}}>3</div>
+                  <div className="m-card-label text-red" style={{position: 'relative', zIndex: 1}}>Perlu Revisi</div>
                 </div>
                 <div
                   className={`m-status-card ${activeMerchantTab === 'disetujui' ? 'active-green' : ''}`}
                   onClick={() => setActiveMerchantTab('disetujui')}
                 >
-                  <div className="m-card-number text-green">28</div>
-                  <div className="m-card-label text-green">Disetujui</div>
+                  <div className="kpi-bg-icon"><CheckCircle2 size={110} color="#10b981" strokeWidth={1} /></div>
+                  <div className="m-card-number text-green" style={{position: 'relative', zIndex: 1}}>28</div>
+                  <div className="m-card-label text-green" style={{position: 'relative', zIndex: 1}}>Disetujui</div>
                 </div>
                 <div
                   className={`m-status-card ${activeMerchantTab === 'semua' ? 'active-neutral' : ''}`}
                   onClick={() => setActiveMerchantTab('semua')}
                 >
-                  <div className="m-card-number">2847</div>
-                  <div className="m-card-label">Total Merchant</div>
+                  <div className="kpi-bg-icon"><Store size={110} color="#94a3b8" strokeWidth={1} /></div>
+                  <div className="m-card-number" style={{position: 'relative', zIndex: 1}}>2847</div>
+                  <div className="m-card-label" style={{position: 'relative', zIndex: 1}}>Total Merchant</div>
                 </div>
               </div>
 
@@ -1036,7 +1050,7 @@ export default function AdminDashboard() {
                       <div className="empty-state-container">
                         <Box size={48} color="#cbd5e1" strokeWidth={1.5} />
                         <h4>Tidak ada produk</h4>
-                        <p>Oopss... belum ada produk dengan kategori <strong>{activeProductTab === 'menunggu' ? 'Menunggu Review' : activeProductTab === 'revisi' ? 'Perlu Revisi' : activeProductTab === 'disetujui' ? 'Disetujui' : 'Ditolak'}</strong> saat ini. Enjoy life..!</p>
+                        <p>Oopss... belum ada produk dengan kategori <strong>{activeProductTab === 'menunggu' ? 'Menunggu Review' : activeProductTab === 'revisi' ? 'Perlu Revisi' : activeProductTab === 'disetujui' ? 'Disetujui' : 'Ditolak'}</strong> saat ini. Enjoy your day..!</p>
                       </div>
                     );
                   }
@@ -1086,6 +1100,423 @@ export default function AdminDashboard() {
                   </div>
                   ));
                 })()}
+              </div>
+            </div>
+          ) : activeView === 'orders' ? (
+            <div className="orders-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>Manajemen Pesanan</h2>
+                  <p>Pantau dan kelola seluruh transaksi marketplace</p>
+                </div>
+              </div>
+
+              {/* Order KPI Cards */}
+              <div className="order-kpi-grid">
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Clock size={110} color="#d97706" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-yellow-light">
+                    <Clock size={22} color="#d97706" />
+                  </div>
+                  <div className="kpi-content">
+                    <h3>12</h3>
+                    <p>Menunggu Bayar</p>
+                  </div>
+                  <div className="kpi-trend trend-down">
+                    <TrendingDown size={14} /> <span>2%</span>
+                  </div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Package size={110} color="#059669" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-green-light">
+                    <Package size={22} color="#059669" />
+                  </div>
+                  <div className="kpi-content">
+                    <h3>47</h3>
+                    <p>Dibayar/Diproses</p>
+                  </div>
+                  <div className="kpi-trend trend-up">
+                    <TrendingUp size={14} /> <span>14%</span>
+                  </div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Truck size={110} color="#2563eb" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-blue-light">
+                    <Truck size={22} color="#2563eb" />
+                  </div>
+                  <div className="kpi-content">
+                    <h3>128</h3>
+                    <p>Dikirim</p>
+                  </div>
+                  <div className="kpi-trend trend-up">
+                    <TrendingUp size={14} /> <span>5%</span>
+                  </div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><CheckCircle2 size={110} color="#10b981" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-emerald-light">
+                    <CheckCircle2 size={22} color="#10b981" />
+                  </div>
+                  <div className="kpi-content">
+                    <h3>89</h3>
+                    <p>Selesai Hari Ini</p>
+                  </div>
+                  <div className="kpi-trend trend-up">
+                    <TrendingUp size={14} /> <span>24%</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Toolbar */}
+              <div className="order-toolbar-container">
+                <div className="order-search-box">
+                  <Search size={16} color="#94a3b8" />
+                  <input type="text" placeholder="Cari pesanan, pembeli, produk..." />
+                </div>
+                <select className="order-filter-dropdown">
+                  <option>Semua Status</option>
+                  <option>Menunggu Bayar</option>
+                  <option>Dibayar</option>
+                  <option>Diproses</option>
+                  <option>Dikirim</option>
+                  <option>Selesai</option>
+                  <option>Dibatalkan</option>
+                </select>
+              </div>
+
+              {/* Table */}
+              <div className="order-table-container">
+                <table className="order-table">
+                  <thead>
+                    <tr>
+                      <th>ID Pesanan</th>
+                      <th>Pembeli</th>
+                      <th>Produk</th>
+                      <th>Merchant</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Waktu</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedOrders.map((order, i) => (
+                      <tr key={i}>
+                        <td className="o-id">{order.id}</td>
+                        <td className="o-buyer">{order.buyer}</td>
+                        <td className="o-product">{order.product}</td>
+                        <td className="o-merchant">{order.merchant}</td>
+                        <td className="o-total">{order.total}</td>
+                        <td>
+                          <span className={`o-badge badge-${order.status.toLowerCase()}`}>
+                            {order.status}
+                          </span>
+                        </td>
+                        <td className="o-date">{order.date}</td>
+                        <td>
+                          <button className="btn-o-detail">Detail</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                {/* Pagination */}
+                <div className="pagination-container">
+                  <span className="pagination-info">Menampilkan {(orderCurrentPage - 1) * orderItemsPerPage + 1} - {Math.min(orderCurrentPage * orderItemsPerPage, orderData.length)} dari {orderData.length} pesanan</span>
+                  <div className="pagination-controls">
+                    <button 
+                      disabled={orderCurrentPage === 1} 
+                      onClick={() => setOrderCurrentPage(prev => Math.max(prev - 1, 1))}
+                      className="btn-page"
+                    >
+                      Prev
+                    </button>
+                    {Array.from({ length: totalOrderPages }).map((_, idx) => (
+                      <button 
+                        key={idx} 
+                        className={`btn-page ${orderCurrentPage === idx + 1 ? 'active' : ''}`}
+                        onClick={() => setOrderCurrentPage(idx + 1)}
+                      >
+                        {idx + 1}
+                      </button>
+                    ))}
+                    <button 
+                      disabled={orderCurrentPage === totalOrderPages} 
+                      onClick={() => setOrderCurrentPage(prev => Math.min(prev + 1, totalOrderPages))}
+                      className="btn-page"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : activeView === 'customers' ? (
+            <div className="customers-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>Customer Database</h2>
+                  <p>Kelola data pelanggan & analitik perilaku pengguna</p>
+                </div>
+                <div style={{display: 'flex', gap: '10px'}}>
+                  <button className="btn-secondary" style={{display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 16px', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', border: '1px solid #e2e8f0', background: 'white'}}>
+                    <Download size={16} /> Export Data
+                  </button>
+                  <button className="btn-primary" style={{display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', borderRadius: '8px', background: '#047857', color: 'white', border: 'none', fontWeight: '600', cursor: 'pointer'}}>
+                    <UserPlus size={16} /> Tambah Customer
+                  </button>
+                </div>
+              </div>
+
+              {/* KPI Cards */}
+              <div className="order-kpi-grid">
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Users size={110} color="#3b82f6" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-blue-light"><Users size={22} color="#3b82f6" /></div>
+                  <div className="kpi-content">
+                    <h3>12,450</h3>
+                    <p>Total Customers</p>
+                    <span className="kpi-subtext">Terdaftar di platform</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>14.5%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Activity size={110} color="#10b981" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-emerald-light"><Activity size={22} color="#10b981" /></div>
+                  <div className="kpi-content">
+                    <h3>4,210</h3>
+                    <p>Active Users</p>
+                    <span className="kpi-subtext">Dalam 30 hari terakhir</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>5.2%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><ShoppingCart size={110} color="#d97706" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-yellow-light"><ShoppingCart size={22} color="#d97706" /></div>
+                  <div className="kpi-content">
+                    <h3>Rp 145 Rb</h3>
+                    <p>Avg. Order Value</p>
+                    <span className="kpi-subtext">Rata-rata belanja</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>2.1%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><UserPlus size={110} color="#8b5cf6" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-purple-light"><UserPlus size={22} color="#8b5cf6" /></div>
+                  <div className="kpi-content">
+                    <h3>342</h3>
+                    <p>New Signups</p>
+                    <span className="kpi-subtext">Minggu ini</span>
+                  </div>
+                  <div className="kpi-trend trend-down"><TrendingDown size={14} /> <span>1.5%</span></div>
+                </div>
+              </div>
+
+              {/* Customers Table */}
+              <div className="affiliate-table-card" style={{marginTop: '1.5rem'}}>
+                <div className="card-header" style={{display: 'flex', justifySelf: 'stretch', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem'}}>
+                  <h3 className="card-title" style={{margin: 0}}><Users size={18} color="#047857" /> Data Pelanggan</h3>
+                  <div className="table-search" style={{position: 'relative'}}>
+                    <Search size={16} color="#94a3b8" style={{position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)'}} />
+                    <input type="text" placeholder="Cari nama, email, hp..." style={{padding: '8px 16px 8px 36px', borderRadius: '8px', border: '1px solid #e2e8f0', width: '250px', outline: 'none', fontFamily: 'inherit'}} />
+                  </div>
+                </div>
+                
+                <div className="order-table-container" style={{border: 'none', borderRadius: 0}}>
+                  <table className="order-table">
+                    <thead>
+                      <tr>
+                        <th>Pelanggan</th>
+                        <th>Kontak</th>
+                        <th>Status / Segment</th>
+                        <th>Total Order</th>
+                        <th>Total Belanja</th>
+                        <th>Last Active</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {customerData.map((cust) => (
+                        <tr key={cust.id}>
+                          <td>
+                            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                              <div style={{width: '36px', height: '36px', borderRadius: '50%', background: '#e0f2fe', color: '#0369a1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px'}}>
+                                {cust.name.split(' ').map(n => n[0]).join('')}
+                              </div>
+                              <div>
+                                <div style={{fontWeight: '700', color: '#0f172a'}}>{cust.name}</div>
+                                <div style={{fontSize: '0.75rem', color: '#64748b', fontFamily: 'monospace'}}>{cust.id}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div style={{display: 'flex', flexDirection: 'column', gap: '4px'}}>
+                              <div style={{display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#334155'}}><Mail size={12} color="#94a3b8" /> {cust.email}</div>
+                              <div style={{display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#334155'}}><Smartphone size={12} color="#94a3b8" /> {cust.phone}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div style={{display: 'flex', gap: '6px', alignItems: 'center'}}>
+                              <span className={`status-badge ${cust.status === 'Aktif' ? 'status-dikirim' : 'status-dibatalkan'}`}>{cust.status}</span>
+                              <span style={{
+                                padding: '4px 8px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '700',
+                                background: cust.segment === 'Platinum' ? '#1e293b' : cust.segment === 'Gold' ? '#fef08a' : cust.segment === 'Silver' ? '#f1f5f9' : '#ffedd5',
+                                color: cust.segment === 'Platinum' ? '#f8fafc' : cust.segment === 'Gold' ? '#854d0e' : cust.segment === 'Silver' ? '#475569' : '#9a3412'
+                              }}>
+                                {cust.segment}
+                              </span>
+                            </div>
+                          </td>
+                          <td style={{fontWeight: '600', color: '#0f172a'}}>{cust.orders}</td>
+                          <td style={{fontWeight: '700', color: '#047857'}}>{cust.spent}</td>
+                          <td style={{fontSize: '0.85rem', color: '#64748b'}}>{cust.lastActive}</td>
+                          <td><button className="btn-o-detail">Lihat Profil</button></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          ) : activeView === 'affiliate' ? (
+            <div className="affiliate-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>Affiliate Management</h2>
+                  <p>Kelola program affiliate & leaderboard</p>
+                </div>
+                <button className="btn-primary" style={{display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', borderRadius: '8px', background: '#047857', color: 'white', border: 'none', fontWeight: '600', cursor: 'pointer'}}>
+                  <Plus size={16} /> Tambah Affiliate
+                </button>
+              </div>
+
+              {/* KPI Cards */}
+              <div className="order-kpi-grid">
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Target size={110} color="#d97706" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-yellow-light"><Target size={22} color="#d97706" /></div>
+                  <div className="kpi-content">
+                    <h3>890</h3>
+                    <p>Affiliate Aktif</p>
+                    <span className="kpi-subtext">48 pending approval</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>12%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Smartphone size={110} color="#475569" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-slate-light"><Smartphone size={22} color="#475569" /></div>
+                  <div className="kpi-content">
+                    <h3>184.2K</h3>
+                    <p>Total Klik (Bulan)</p>
+                    <span className="kpi-subtext">via WA & link</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>23.4%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><BarChart2 size={110} color="#9333ea" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-purple-light"><BarChart2 size={22} color="#9333ea" /></div>
+                  <div className="kpi-content">
+                    <h3>7.2%</h3>
+                    <p>Conversion Rate</p>
+                    <span className="kpi-subtext">rata-rata semua affiliate</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>0.8%</span></div>
+                </div>
+                <div className="order-kpi-card">
+                  <div className="kpi-bg-icon"><Banknote size={110} color="#10b981" strokeWidth={1} /></div>
+                  <div className="kpi-icon-wrapper bg-emerald-light"><Banknote size={22} color="#10b981" /></div>
+                  <div className="kpi-content">
+                    <h3>Rp 48,3 Jt</h3>
+                    <p>Komisi Terbayar</p>
+                    <span className="kpi-subtext">bulan Juli 2024</span>
+                  </div>
+                  <div className="kpi-trend trend-up"><TrendingUp size={14} /> <span>18.1%</span></div>
+                </div>
+              </div>
+
+              {/* Middle Section: Chart & Leaderboard */}
+              <div className="affiliate-middle-grid">
+                <div className="affiliate-chart-card">
+                  <h3 className="card-title">Klik & Konversi 7 Hari Terakhir</h3>
+                  <div className="mock-chart-container">
+                    <div className="chart-grid-lines">
+                      <div className="c-line"></div>
+                      <div className="c-line"></div>
+                      <div className="c-line"></div>
+                      <div className="c-line"></div>
+                    </div>
+                    <div className="mock-chart-bars">
+                      {affiliateChartData.map((data, idx) => (
+                        <div className="mc-col group" key={data.day} style={{'--animation-order': idx}}>
+                          <div className="mc-tooltip">
+                            <div className="tt-row"><div className="tt-dot light"></div> <span>{data.clicks} Klik</span></div>
+                            <div className="tt-row"><div className="tt-dot dark"></div> <span>{data.conv} Konversi</span></div>
+                          </div>
+                          <div className="mc-bar-light" style={{height: data.clickH}}></div>
+                          <div className="mc-bar-dark" style={{height: data.convH}}></div>
+                          <span className="mc-label">{data.day}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="affiliate-leaderboard-card">
+                  <h3 className="card-title"><Trophy size={18} color="#d97706" /> Leaderboard</h3>
+                  <div className="leaderboard-list">
+                    {affiliateData.map((aff) => (
+                      <div key={aff.code} className="leaderboard-item">
+                        <div className={`lb-rank rank-${aff.rank}`}>{aff.rank}</div>
+                        <div className="lb-info">
+                          <h4>{aff.name}</h4>
+                          <span>{aff.code}</span>
+                        </div>
+                        <div className="lb-stats">
+                          <h4>{aff.komisi}</h4>
+                          <span>{aff.orders} order</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Table Section */}
+              <div className="affiliate-table-card">
+                <h3 className="card-title">Daftar Affiliate</h3>
+                <div className="order-table-container" style={{border: 'none', borderRadius: 0}}>
+                  <table className="order-table">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Nama</th>
+                        <th>Kode</th>
+                        <th>Total Klik</th>
+                        <th>Total Order</th>
+                        <th>Omzet</th>
+                        <th>Komisi</th>
+                        <th>Conv. Rate</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {affiliateData.map((aff) => (
+                        <tr key={aff.code}>
+                          <td className={`a-rank rank-text-${aff.rank}`}>#{aff.rank}</td>
+                          <td className="a-name">{aff.name}</td>
+                          <td className="a-code">{aff.code}</td>
+                          <td className="a-clicks">{aff.clicks}</td>
+                          <td className="a-orders">{aff.orders}</td>
+                          <td className="a-omzet">{aff.omzet}</td>
+                          <td className="a-komisi">{aff.komisi}</td>
+                          <td className="a-conv">{aff.convRate}</td>
+                          <td><button className="btn-o-detail">Detail</button></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           ) : activeView === 'settings' ? (
