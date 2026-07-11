@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Search, Bell, LayoutDashboard, Store, Box, ShoppingCart, Heart,
   Target, Bot, Smartphone, BarChart2, Settings, Menu, TrendingUp, Package, Users, Plus, Download, Send, CheckCircle2, Eye, EyeOff,
-  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail
+  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail, MessageCircle, Gift, Star, RefreshCw, Zap, Moon, Sparkles, BellRing, Camera, PenTool, Shield, AlertTriangle, Ban, MessageSquare, Image, AlignLeft, Rocket, ImagePlus, Sun, Contrast, Maximize2, Crop, CloudLightning, Rotate3D, MicOff, SunDim, Focus, Eraser, CheckSquare
 } from 'lucide-react';
 import '../AdminDashboard.css';
 
@@ -14,6 +14,7 @@ export default function AdminDashboard() {
 
   // Navigation State
   const [activeView, setActiveView] = useState('overview');
+  const [activeAIToolTab, setActiveAIToolTab] = useState('photo');
 
   // Settings State
   const [showApiKey, setShowApiKey] = useState(false);
@@ -217,10 +218,10 @@ export default function AdminDashboard() {
               <span>CRM & Marketing</span>
             </div>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'aitools' ? 'active' : ''}`} onClick={() => setActiveView('aitools')}>
             <div className="nav-item-left">
               <Bot size={20} className="nav-icon" />
-              <span>AI Tools</span>
+              <span>AI Tools Suite</span>
             </div>
           </a>
           <a href="#" className="nav-item">
@@ -1652,6 +1653,249 @@ export default function AdminDashboard() {
                     <div className="ai-status">Aktif</div>
                   </div>
                 </div>
+              </div>
+            </div>
+          ) : activeView === 'aitools' ? (
+            <div className="aitools-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>AI Tools Suite</h2>
+                  <p>Alat AI untuk merchant & operasional marketplace</p>
+                </div>
+              </div>
+
+              {/* AI Tabs */}
+              <div className="ai-tabs-container">
+                <button className={`ai-tab-btn ${activeAIToolTab === 'photo' ? 'active' : ''}`} onClick={() => setActiveAIToolTab('photo')}>
+                  <Camera size={16} className={activeAIToolTab === 'photo' ? 'tab-icon-active' : 'tab-icon'} /> AI Photo Enhancement
+                </button>
+                <button className={`ai-tab-btn ${activeAIToolTab === 'content' ? 'active' : ''}`} onClick={() => setActiveAIToolTab('content')}>
+                  <PenTool size={16} className={activeAIToolTab === 'content' ? 'tab-icon-active' : 'tab-icon'} /> AI Content Generator
+                </button>
+                <button className={`ai-tab-btn ${activeAIToolTab === 'wa' ? 'active' : ''}`} onClick={() => setActiveAIToolTab('wa')}>
+                  <MessageCircle size={16} className={activeAIToolTab === 'wa' ? 'tab-icon-active' : 'tab-icon'} /> WhatsApp AI
+                </button>
+                <button className={`ai-tab-btn ${activeAIToolTab === 'fraud' ? 'active' : ''}`} onClick={() => setActiveAIToolTab('fraud')}>
+                  <Shield size={16} className={activeAIToolTab === 'fraud' ? 'tab-icon-active' : 'tab-icon'} /> AI Fraud Detection
+                </button>
+              </div>
+
+              {/* AI Tab Content */}
+              <div className="ai-tab-content">
+                
+                {activeAIToolTab === 'photo' && (
+                  <div className="ai-photo-grid">
+                    <div className="ai-tools-card">
+                      <h3 className="ait-card-title">AI Photo Enhancement Studio</h3>
+                      <div className="ait-check-grid">
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Image size={14} color="#6366f1" /> Background Removal</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><ImagePlus size={14} color="#0f766e" /> Background Replace</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Sun size={14} color="#f59e0b" /> Auto Relighting</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Contrast size={14} color="#ec4899" /> Color Enhancement</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Maximize2 size={14} color="#0ea5e9" /> Super Resolution</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Crop size={14} color="#ef4444" /> Smart Crop</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><CloudLightning size={14} color="#6366f1" /> Shadow Generation</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Rotate3D size={14} color="#8b5cf6" /> Perspective Fix</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><MicOff size={14} color="#3b82f6" /> Noise Reduction</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><SunDim size={14} color="#f59e0b" /> HDR Enhancement</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Focus size={14} color="#ec4899" /> Object Detection</span></label>
+                        <label className="ait-checkbox"><input type="checkbox" defaultChecked /> <span><Eraser size={14} color="#3b82f6" /> Remove Object</span></label>
+                      </div>
+                      <button className="btn-ai-process"><Rocket size={16} /> Proses dengan AI</button>
+                    </div>
+                    <div className="ai-tools-card">
+                      <h3 className="ait-card-title">Preview Hasil AI</h3>
+                      <div className="ait-preview-split">
+                        <div className="preview-col">
+                          <span className="preview-label">Sebelum</span>
+                          <div className="preview-img-box before-img"></div>
+                        </div>
+                        <div className="preview-col">
+                          <span className="preview-label"><Sparkles size={14} color="#eab308" /> Sesudah AI</span>
+                          <div className="preview-img-box after-img">
+                            <span className="img-placeholder-text">Klik 'Proses' untuk melihat hasil</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeAIToolTab === 'content' && (
+                  <div className="ai-tools-card">
+                    <h3 className="ait-card-title">AI Content Generator</h3>
+                    <div className="ait-content-grid">
+                      <div className="ait-c-left">
+                        <textarea 
+                          className="ait-textarea" 
+                          placeholder="Batik tulis asli Yogyakarta, motif kawung, bahan sutra premium, dikerjakan oleh pengrajin berpengalaman 20 tahun"
+                          defaultValue="Batik tulis asli Yogyakarta, motif kawung, bahan sutra premium, dikerjakan oleh pengrajin berpengalaman 20 tahun"
+                        ></textarea>
+                        <div className="ait-c-options">
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Judul SEO</label>
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Deskripsi</label>
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Keunggulan</label>
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Hashtag</label>
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Caption IG</label>
+                          <label className="ait-mini-check"><input type="checkbox" defaultChecked /> Keyword</label>
+                        </div>
+                        <div className="ait-c-actions">
+                          <button className="btn-ai-process" style={{flex: 1}}><Bot size={16} /> Generate AI</button>
+                          <select className="ait-select">
+                            <option>ID Indonesia</option>
+                            <option>EN English</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="ait-c-right">
+                        <div className="ait-result-header"><Sparkles size={16} color="#d97706" /> Hasil Generate AI</div>
+                        
+                        <div className="ait-res-block">
+                          <span className="res-label">Judul SEO</span>
+                          <p className="res-value highlight">Batik Tulis Kawung Sutra Asli Yogyakarta - Pengrajin 20 Tahun | Saudagar UII</p>
+                        </div>
+                        <div className="ait-res-block">
+                          <span className="res-label">Deskripsi</span>
+                          <p className="res-value">Hadirkan keindahan budaya Jawa di setiap helai kain. Batik tulis kawung kami dikerjakan oleh pengrajin berpengalaman 20 tahun menggunakan bahan sutra premium pilihan...</p>
+                        </div>
+                        <div className="ait-res-block">
+                          <span className="res-label">Hashtag</span>
+                          <p className="res-value" style={{color: '#10b981'}}>#batiktulis #batikjogja #batiksutra #umkmindonesia #batikkawung</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeAIToolTab === 'wa' && (
+                  <div className="ai-tools-card">
+                    <h3 className="ait-card-title">WhatsApp AI Status & Monitoring</h3>
+                    
+                    <div className="wa-kpi-grid">
+                      <div className="wa-kpi-card">
+                        <div className="kpi-bg-icon"><MessageSquare size={110} color="#c084fc" strokeWidth={1} /></div>
+                        <div className="wk-icon"><MessageSquare size={20} color="#c084fc" /></div>
+                        <div className="wk-value">1.284</div>
+                        <div className="wk-label">Chat Aktif Hari Ini</div>
+                        <div className="wk-sub">merchant onboarding</div>
+                      </div>
+                      <div className="wa-kpi-card">
+                        <div className="kpi-bg-icon"><CheckSquare size={110} color="#10b981" strokeWidth={1} /></div>
+                        <div className="wk-header">
+                          <div className="wk-icon bg-green"><CheckSquare size={20} color="#10b981" /></div>
+                          <span className="wk-trend">+12%</span>
+                        </div>
+                        <div className="wk-value">47</div>
+                        <div className="wk-label">Registrasi Selesai</div>
+                        <div className="wk-sub">via AI hari ini</div>
+                      </div>
+                      <div className="wa-kpi-card">
+                        <div className="kpi-bg-icon"><Zap size={110} color="#f97316" strokeWidth={1} /></div>
+                        <div className="wk-icon"><Zap size={20} color="#f97316" /></div>
+                        <div className="wk-value">&lt;2 detik</div>
+                        <div className="wk-label">Respons AI</div>
+                        <div className="wk-sub">rata-rata</div>
+                      </div>
+                    </div>
+
+                    <div className="wa-funnel-section">
+                      <h4 className="wa-funnel-title">Alur Percakapan Aktif</h4>
+                      <div className="wa-funnel-list">
+                        <div className="wa-f-item">
+                          <div className="wf-label">Mulai Registrasi</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '100%'}}></div></div>
+                          <div className="wf-value">312 <span>(100%)</span></div>
+                        </div>
+                        <div className="wa-f-item">
+                          <div className="wf-label">Nama Usaha Dikumpulkan</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '95.5%'}}></div></div>
+                          <div className="wf-value">298 <span>(95.5%)</span></div>
+                        </div>
+                        <div className="wa-f-item">
+                          <div className="wf-label">Data Lokasi Dikumpulkan</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '86.9%'}}></div></div>
+                          <div className="wf-value">271 <span>(86.9%)</span></div>
+                        </div>
+                        <div className="wa-f-item">
+                          <div className="wf-label">Foto Produk Diterima</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '63.5%'}}></div></div>
+                          <div className="wf-value">198 <span>(63.5%)</span></div>
+                        </div>
+                        <div className="wa-f-item">
+                          <div className="wf-label">Data Rekening Bank</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '35.9%'}}></div></div>
+                          <div className="wf-value">112 <span>(35.9%)</span></div>
+                        </div>
+                        <div className="wa-f-item">
+                          <div className="wf-label">Registrasi Selesai</div>
+                          <div className="wf-bar-bg"><div className="wf-bar-fill" style={{width: '15.1%'}}></div></div>
+                          <div className="wf-value">47 <span>(15.1%)</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeAIToolTab === 'fraud' && (
+                  <div className="ai-tools-card">
+                    <h3 className="ait-card-title">AI Fraud Detection</h3>
+                    
+                    <div className="fraud-kpi-grid">
+                      <div className="wa-kpi-card bg-gray">
+                        <div className="kpi-bg-icon"><Search size={110} color="#3b82f6" strokeWidth={1} /></div>
+                        <div className="wk-icon no-bg"><Search size={22} color="#3b82f6" /></div>
+                        <div className="wk-value">38.290</div>
+                        <div className="wk-label">Akun Dipantau</div>
+                      </div>
+                      <div className="wa-kpi-card bg-gray">
+                        <div className="kpi-bg-icon"><AlertTriangle size={110} color="#eab308" strokeWidth={1} /></div>
+                        <div className="wk-icon no-bg"><AlertTriangle size={22} color="#eab308" /></div>
+                        <div className="wk-value">23</div>
+                        <div className="wk-label">Terdeteksi Risiko</div>
+                      </div>
+                      <div className="wa-kpi-card bg-gray">
+                        <div className="kpi-bg-icon"><Ban size={110} color="#ef4444" strokeWidth={1} /></div>
+                        <div className="wk-icon no-bg"><Ban size={22} color="#ef4444" /></div>
+                        <div className="wk-value">4</div>
+                        <div className="wk-label">Diblokir Hari Ini</div>
+                      </div>
+                      <div className="wa-kpi-card bg-gray">
+                        <div className="kpi-bg-icon"><CheckSquare size={110} color="#10b981" strokeWidth={1} /></div>
+                        <div className="wk-icon no-bg"><CheckSquare size={22} color="#10b981" /></div>
+                        <div className="wk-value">97.3%</div>
+                        <div className="wk-label">Akurasi AI</div>
+                      </div>
+                    </div>
+
+                    <div className="fraud-list">
+                      <div className="fraud-item bg-red-light">
+                        <div className="f-icon red"></div>
+                        <div className="f-info">
+                          <h4>Akun Ganda <span>USR-4821</span></h4>
+                          <p>Ditemukan 3 akun dengan nomor telepon sama</p>
+                        </div>
+                        <button className="btn-f-action red">Blokir</button>
+                      </div>
+                      <div className="fraud-item bg-yellow-light">
+                        <div className="f-icon yellow"></div>
+                        <div className="f-info">
+                          <h4>Fake Order <span>TRX-9921</span></h4>
+                          <p>Pola transaksi mencurigakan dari IP yang sama</p>
+                        </div>
+                        <button className="btn-f-action yellow">Investigasi</button>
+                      </div>
+                      <div className="fraud-item bg-yellow-light">
+                        <div className="f-icon yellow"></div>
+                        <div className="f-info">
+                          <h4>Abuse Affiliate <span>AFF-2201</span></h4>
+                          <p>Klik tidak organik terdeteksi pada link affiliate</p>
+                        </div>
+                        <button className="btn-f-action yellow">Suspend</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           ) : activeView === 'settings' ? (
