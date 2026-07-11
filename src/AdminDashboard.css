@@ -1942,3 +1942,27 @@
 .btn-f-action:hover { opacity: 0.9; }
 .btn-f-action.red { background: #ef4444; }
 .btn-f-action.yellow { background: #d97706; }
+
+/* Produk Digital View */
+.digi-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.digi-product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.digi-card { background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: all 0.2s; cursor: pointer; }
+.digi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.1); }
+.digi-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.digi-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.digi-icon.bg-orange { background: #ffedd5; }
+.digi-icon.bg-indigo { background: #e0e7ff; }
+.digi-icon.bg-blue { background: #dbeafe; }
+.digi-icon.bg-pink { background: #fce7f3; }
+.digi-icon.bg-green { background: #d1fae5; }
+.digi-icon.bg-purple { background: #f3e8ff; }
+.digi-status { font-size: 0.75rem; font-weight: 700; color: #10b981; background: #ecfdf5; padding: 4px 10px; border-radius: 20px; }
+.digi-title { margin: 0 0 1.25rem 0; font-size: 1.05rem; font-weight: 700; color: #1d1d1f; }
+.digi-stats { display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #e2e8f0; }
+.d-stat-col { display: flex; flex-direction: column; gap: 4px; }
+.d-stat-col.text-right { text-align: right; }
+.d-stat-label { font-size: 0.8rem; color: #64748b; font-weight: 500; }
+.d-stat-val { font-size: 0.95rem; font-weight: 700; color: #0f172a; }
+.d-stat-val.text-green { color: #10b981; }
+.digi-margin { font-size: 0.85rem; font-weight: 500; color: #64748b; }
+.digi-margin .text-orange { color: #f59e0b; font-weight: 700; }

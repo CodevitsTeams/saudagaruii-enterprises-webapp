@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Search, Bell, LayoutDashboard, Store, Box, ShoppingCart, Heart,
   Target, Bot, Smartphone, BarChart2, Settings, Menu, TrendingUp, Package, Users, Plus, Download, Send, CheckCircle2, Eye, EyeOff,
-  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail, MessageCircle, Gift, Star, RefreshCw, Zap, Moon, Sparkles, BellRing, Camera, PenTool, Shield, AlertTriangle, Ban, MessageSquare, Image, AlignLeft, Rocket, ImagePlus, Sun, Contrast, Maximize2, Crop, CloudLightning, Rotate3D, MicOff, SunDim, Focus, Eraser, CheckSquare
+  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail, MessageCircle, Gift, Star, RefreshCw, Zap, Moon, Sparkles, BellRing, Camera, PenTool, Shield, AlertTriangle, Ban, MessageSquare, Image, AlignLeft, Rocket, ImagePlus, Sun, Contrast, Maximize2, Crop, CloudLightning, Rotate3D, MicOff, SunDim, Focus, Eraser, CheckSquare, Gamepad2, Coins, Wallet, CreditCard, MonitorSmartphone
 } from 'lucide-react';
 import '../AdminDashboard.css';
 
@@ -224,7 +224,7 @@ export default function AdminDashboard() {
               <span>AI Tools Suite</span>
             </div>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'digital' ? 'active' : ''}`} onClick={() => setActiveView('digital')}>
             <div className="nav-item-left">
               <Smartphone size={20} className="nav-icon" />
               <span>Produk Digital</span>
@@ -1896,6 +1896,180 @@ export default function AdminDashboard() {
                   </div>
                 )}
 
+              </div>
+            </div>
+          ) : activeView === 'digital' ? (
+            <div className="digital-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>Produk Digital & PPOB</h2>
+                  <p>Monitoring transaksi layanan digital & utilitas</p>
+                </div>
+              </div>
+
+              <div className="digi-kpi-grid">
+                <div className="wa-kpi-card">
+                  <div className="kpi-bg-icon"><Zap size={110} color="#f97316" strokeWidth={1} /></div>
+                  <div className="wk-header">
+                    <div className="wk-icon no-bg" style={{marginBottom: 0}}><Zap size={24} color="#f97316" /></div>
+                    <span className="wk-trend">+7.8%</span>
+                  </div>
+                  <div className="wk-value" style={{marginTop: '0.5rem'}}>2.569</div>
+                  <div className="wk-label">Total Transaksi Hari Ini</div>
+                  <div className="wk-sub">semua layanan</div>
+                </div>
+                <div className="wa-kpi-card">
+                  <div className="kpi-bg-icon"><Wallet size={110} color="#eab308" strokeWidth={1} /></div>
+                  <div className="wk-header">
+                    <div className="wk-icon no-bg" style={{marginBottom: 0}}><Wallet size={24} color="#eab308" /></div>
+                    <span className="wk-trend">+5.3%</span>
+                  </div>
+                  <div className="wk-value" style={{marginTop: '0.5rem'}}>Rp 91,2 Jt</div>
+                  <div className="wk-label">Revenue PPOB</div>
+                  <div className="wk-sub">margin rata-rata 2.1%</div>
+                </div>
+                <div className="wa-kpi-card">
+                  <div className="kpi-bg-icon"><CheckCircle2 size={110} color="#10b981" strokeWidth={1} /></div>
+                  <div className="wk-icon no-bg" style={{marginBottom: 0}}><CheckCircle2 size={24} color="#10b981" /></div>
+                  <div className="wk-value" style={{marginTop: '0.5rem'}}>99.2%</div>
+                  <div className="wk-label">Success Rate</div>
+                  <div className="wk-sub">SLA &lt; 10 detik</div>
+                </div>
+                <div className="wa-kpi-card">
+                  <div className="kpi-bg-icon"><MonitorSmartphone size={110} color="#6366f1" strokeWidth={1} /></div>
+                  <div className="wk-icon no-bg" style={{marginBottom: 0}}><MonitorSmartphone size={24} color="#6366f1" /></div>
+                  <div className="wk-value" style={{marginTop: '0.5rem'}}>24</div>
+                  <div className="wk-label">Layanan Aktif</div>
+                  <div className="wk-sub">partner terintegrasi</div>
+                </div>
+              </div>
+
+              <div className="digi-product-grid">
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-orange"><Zap size={22} color="#f97316" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">Token Listrik PLN</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">342</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 8.6 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">2.1%</span>
+                  </div>
+                </div>
+
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-indigo"><Smartphone size={22} color="#6366f1" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">Pulsa All Operator</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">891</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 26.7 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">1.8%</span>
+                  </div>
+                </div>
+
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-blue"><Activity size={22} color="#3b82f6" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">Paket Data Internet</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">567</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 14.2 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">2.3%</span>
+                  </div>
+                </div>
+
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-pink"><Heart size={22} color="#ec4899" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">BPJS Kesehatan</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">123</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 9.2 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">1.5%</span>
+                  </div>
+                </div>
+
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-green"><Wallet size={22} color="#10b981" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">Top Up GoPay</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">412</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 20.6 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">1.2%</span>
+                  </div>
+                </div>
+
+                <div className="digi-card">
+                  <div className="digi-card-header">
+                    <div className="digi-icon bg-purple"><Gamepad2 size={22} color="#a855f7" /></div>
+                    <span className="digi-status">Aktif</span>
+                  </div>
+                  <h3 className="digi-title">Voucher Game</h3>
+                  <div className="digi-stats">
+                    <div className="d-stat-col">
+                      <span className="d-stat-label">Tx Hari Ini</span>
+                      <span className="d-stat-val">234</span>
+                    </div>
+                    <div className="d-stat-col text-right">
+                      <span className="d-stat-label">Revenue</span>
+                      <span className="d-stat-val text-green">Rp 11.7 Jt</span>
+                    </div>
+                  </div>
+                  <div className="digi-margin">
+                    Margin <span className="text-orange">3.4%</span>
+                  </div>
+                </div>
               </div>
             </div>
           ) : activeView === 'settings' ? (
