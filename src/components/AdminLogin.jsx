@@ -23,7 +23,7 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
             </div>
           </div>
 
-          <h1>Panel Admin Terpusat untuk Ekosistem UMKM Indonesia</h1>
+          <h1>Dashboard Terpusat untuk Ekosistem UMKM Indonesia</h1>
           <p>
             Kelola merchant, verifikasi produk, pantau transaksi, analisis performa, dan jalankan kampanye marketing, semua dalam satu dashboard.
           </p>
