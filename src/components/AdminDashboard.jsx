@@ -115,6 +115,15 @@ export default function AdminDashboard() {
   const [activeChartPoint, setActiveChartPoint] = useState(null);
   const chartRef = useRef(null);
 
+  // Pie Chart State
+  const [hoveredPieSegment, setHoveredPieSegment] = useState(null);
+  const pieSegments = [
+    { label: 'Fashion', percent: 32, color: '#021e18', value: '3,968' },
+    { label: 'Kuliner', percent: 28, color: '#f59e0b', value: '3,472' },
+    { label: 'Kerajinan', percent: 25, color: '#ef4444', value: '3,100' },
+    { label: 'Lainnya', percent: 15, color: '#4f46e5', value: '1,860' },
+  ];
+
   const chartData = [
     { month: 'Jan', value: 'Rp 80 Jt', yPercent: 80 },   // 200/250
     { month: 'Feb', value: 'Rp 120 Jt', yPercent: 64 },  // 160/250
@@ -665,11 +674,52 @@ export default function AdminDashboard() {
                   </div>
 
                   <div className="dummy-pie-chart-container">
-                    <div className="pie-chart-wrapper">
-                      <div className="pie-chart"></div>
-                      <div className="pie-chart-total">
-                        <span className="pie-chart-total-value">12.4K</span>
-                        <span className="pie-chart-total-label">Orders</span>
+                    <div className="pie-chart-wrapper" style={{ position: 'relative', width: '180px', height: '180px', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <svg width="100%" height="100%" viewBox="0 0 42 42" style={{ overflow: 'visible', position: 'absolute', top: 0, left: 0 }}>
+                        <g transform="rotate(-90 21 21)">
+                          {pieSegments.map((slice, i) => {
+                            const offsetValue = pieSegments.slice(0, i).reduce((acc, curr) => acc + curr.percent, 0);
+                            const dashArray = `${slice.percent} ${100 - slice.percent}`;
+                            const offset = 100 - offsetValue;
+                            const isHovered = hoveredPieSegment === i;
+                            
+                            return (
+                              <circle
+                                key={i}
+                                cx="21"
+                                cy="21"
+                                r="15.91549430918954"
+                                fill="transparent"
+                                stroke={slice.color}
+                                strokeWidth={isHovered ? 12 : 9}
+                                strokeDasharray={dashArray}
+                                strokeDashoffset={offset}
+                                style={{ 
+                                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)', 
+                                  opacity: hoveredPieSegment !== null && !isHovered ? 0.3 : 1,
+                                  cursor: 'pointer',
+                                  transformOrigin: '21px 21px',
+                                  transform: isHovered ? 'scale(1.03)' : 'scale(1)'
+                                }}
+                                onMouseEnter={() => setHoveredPieSegment(i)}
+                                onMouseLeave={() => setHoveredPieSegment(null)}
+                              />
+                            );
+                          })}
+                        </g>
+                      </svg>
+                      <div className="pie-chart-total" style={{ pointerEvents: 'none', zIndex: 5, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: 'inset 0 4px 10px rgba(0,0,0,0.05)' }}>
+                        {hoveredPieSegment !== null ? (
+                          <>
+                            <span className="pie-chart-total-value" style={{ fontSize: '1.15rem', color: pieSegments[hoveredPieSegment].color }}>{pieSegments[hoveredPieSegment].value}</span>
+                            <span className="pie-chart-total-label" style={{ fontSize: '0.65rem' }}>{pieSegments[hoveredPieSegment].label}</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="pie-chart-total-value">12.4K</span>
+                            <span className="pie-chart-total-label">Orders</span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="pie-legend">
