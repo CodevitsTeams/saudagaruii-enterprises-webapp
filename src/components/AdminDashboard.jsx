@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Search, Bell, LayoutDashboard, Store, Box, ShoppingCart, Heart,
   Target, Bot, Smartphone, BarChart2, Settings, Menu, TrendingUp, Package, Users, Plus, Download, Send, CheckCircle2, Eye, EyeOff,
-  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail, MessageCircle, Gift, Star, RefreshCw, Zap, Moon, Sparkles, BellRing, Camera, PenTool, Shield, AlertTriangle, Ban, MessageSquare, Image, AlignLeft, Rocket, ImagePlus, Sun, Contrast, Maximize2, Crop, CloudLightning, Rotate3D, MicOff, SunDim, Focus, Eraser, CheckSquare, Gamepad2, Coins, Wallet, CreditCard, MonitorSmartphone
+  Check, X, RotateCcw, Edit2, Clock, Truck, TrendingDown, Banknote, Trophy, UserPlus, Activity, Mail, MessageCircle, Gift, Star, RefreshCw, Zap, Moon, Sparkles, BellRing, Camera, PenTool, Shield, AlertTriangle, Ban, MessageSquare, Image, AlignLeft, Rocket, ImagePlus, Sun, Contrast, Maximize2, Crop, CloudLightning, Rotate3D, MicOff, SunDim, Focus, Eraser, CheckSquare, Gamepad2, Coins, Wallet, CreditCard, MonitorSmartphone, Diamond, Lightbulb, Brain
 } from 'lucide-react';
 import '../AdminDashboard.css';
 
@@ -230,10 +230,10 @@ export default function AdminDashboard() {
               <span>Produk Digital</span>
             </div>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'bi' ? 'active' : ''}`} onClick={() => setActiveView('bi')}>
             <div className="nav-item-left">
               <BarChart2 size={20} className="nav-icon" />
-              <span>Business Intel</span>
+              <span>Business Intelligence</span>
             </div>
           </a>
           <a href="#" className={`nav-item ${activeView === 'settings' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveView('settings'); }}>
@@ -1602,52 +1602,62 @@ export default function AdminDashboard() {
 
               {/* AI Marketing Automation */}
               <div className="crm-card" style={{marginTop: '1.5rem'}}>
-                <h3 className="crm-card-title">🤖 AI Marketing Automation</h3>
+                <div className="bi-insight-header" style={{marginBottom: '1rem'}}>
+                  <Bot size={22} color="#6366f1" /> <h3 className="crm-card-title" style={{margin: 0}}>AI Marketing Automation</h3>
+                </div>
                 <div className="ai-grid">
                   <div className="ai-card">
-                    <div className="ai-icon">👋</div>
+                    <div className="kpi-bg-icon"><MessageSquare size={110} color="#3b82f6" strokeWidth={1} /></div>
+                    <div className="ai-icon"><MessageSquare size={20} color="#3b82f6" /></div>
                     <div className="ai-title">Welcome Message</div>
                     <div className="ai-trigger">Trigger: Daftar baru</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">🛒</div>
+                    <div className="kpi-bg-icon"><ShoppingCart size={110} color="#10b981" strokeWidth={1} /></div>
+                    <div className="ai-icon"><ShoppingCart size={20} color="#10b981" /></div>
                     <div className="ai-title">Keranjang Ditinggalkan</div>
                     <div className="ai-trigger">Trigger: +1 jam</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">🎂</div>
+                    <div className="kpi-bg-icon"><Gift size={110} color="#f59e0b" strokeWidth={1} /></div>
+                    <div className="ai-icon"><Gift size={20} color="#f59e0b" /></div>
                     <div className="ai-title">Ulang Tahun</div>
                     <div className="ai-trigger">Trigger: H-1</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">⭐</div>
+                    <div className="kpi-bg-icon"><Star size={110} color="#eab308" strokeWidth={1} /></div>
+                    <div className="ai-icon"><Star size={20} color="#eab308" /></div>
                     <div className="ai-title">Review Request</div>
                     <div className="ai-trigger">Trigger: Setelah selesai</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">🔄</div>
+                    <div className="kpi-bg-icon"><RefreshCw size={110} color="#6366f1" strokeWidth={1} /></div>
+                    <div className="ai-icon"><RefreshCw size={20} color="#6366f1" /></div>
                     <div className="ai-title">Repeat Order</div>
                     <div className="ai-trigger">Trigger: 30 hari pasca beli</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">💸</div>
+                    <div className="kpi-bg-icon"><Zap size={110} color="#ef4444" strokeWidth={1} /></div>
+                    <div className="ai-icon"><Zap size={20} color="#ef4444" /></div>
                     <div className="ai-title">Flash Sale Alert</div>
                     <div className="ai-trigger">Trigger: Event promo</div>
                     <div className="ai-status" style={{color: '#94a3b8'}}>Non-aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">😴</div>
+                    <div className="kpi-bg-icon"><Moon size={110} color="#8b5cf6" strokeWidth={1} /></div>
+                    <div className="ai-icon"><Moon size={20} color="#8b5cf6" /></div>
                     <div className="ai-title">Re-engagement</div>
                     <div className="ai-trigger">Trigger: &gt;60 hari non-aktif</div>
                     <div className="ai-status">Aktif</div>
                   </div>
                   <div className="ai-card">
-                    <div className="ai-icon">🆕</div>
+                    <div className="kpi-bg-icon"><Sparkles size={110} color="#ec4899" strokeWidth={1} /></div>
+                    <div className="ai-icon"><Sparkles size={20} color="#ec4899" /></div>
                     <div className="ai-title">Produk Baru</div>
                     <div className="ai-trigger">Trigger: Kategori favorit</div>
                     <div className="ai-status">Aktif</div>
@@ -2068,6 +2078,153 @@ export default function AdminDashboard() {
                   </div>
                   <div className="digi-margin">
                     Margin <span className="text-orange">3.4%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : activeView === 'bi' ? (
+            <div className="bi-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>Business Intelligence</h2>
+                  <p>AI-powered insight & prediksi performa marketplace</p>
+                </div>
+              </div>
+
+              <div className="bi-kpi-grid">
+                <div className="bi-kpi-card">
+                  <div className="kpi-bg-icon"><BarChart2 size={110} color="#6366f1" strokeWidth={1} /></div>
+                  <div className="bi-k-header">
+                    <div className="bi-kpi-icon"><BarChart2 size={20} color="#6366f1" /></div>
+                    <div className="bi-kpi-trend trend-up">+18.4%</div>
+                  </div>
+                  <div className="bi-kpi-val">Rp 4,2 Miliar</div>
+                  <div className="bi-kpi-label">GMV Bulan Ini</div>
+                  <div className="bi-kpi-sub">+18.4% vs bulan lalu</div>
+                </div>
+                <div className="bi-kpi-card">
+                  <div className="kpi-bg-icon"><RefreshCw size={110} color="#3b82f6" strokeWidth={1} /></div>
+                  <div className="bi-k-header">
+                    <div className="bi-kpi-icon bg-blue-subtle"><RefreshCw size={20} color="#3b82f6" /></div>
+                    <div className="bi-kpi-trend trend-up">+6.2%</div>
+                  </div>
+                  <div className="bi-kpi-val">Rp 127.400</div>
+                  <div className="bi-kpi-label">Average Order Value</div>
+                  <div className="bi-kpi-sub">+6.2% vs bulan lalu</div>
+                </div>
+                <div className="bi-kpi-card">
+                  <div className="kpi-bg-icon"><ShoppingCart size={110} color="#64748b" strokeWidth={1} /></div>
+                  <div className="bi-k-header">
+                    <div className="bi-kpi-icon bg-gray-subtle"><ShoppingCart size={20} color="#64748b" /></div>
+                    <div className="bi-kpi-trend trend-up">+0.2</div>
+                  </div>
+                  <div className="bi-kpi-val">2.4 item</div>
+                  <div className="bi-kpi-label">Avg Basket Size</div>
+                  <div className="bi-kpi-sub">per transaksi</div>
+                </div>
+                <div className="bi-kpi-card">
+                  <div className="kpi-bg-icon"><Diamond size={110} color="#0ea5e9" strokeWidth={1} /></div>
+                  <div className="bi-k-header">
+                    <div className="bi-kpi-icon bg-cyan-subtle"><Diamond size={20} color="#0ea5e9" /></div>
+                    <div className="bi-kpi-trend trend-up">+14.1%</div>
+                  </div>
+                  <div className="bi-kpi-val">Rp 892.000</div>
+                  <div className="bi-kpi-label">Customer LTV</div>
+                  <div className="bi-kpi-sub">lifetime value rata-rata</div>
+                </div>
+              </div>
+
+              <div className="bi-middle-grid">
+                <div className="bi-chart-card">
+                  <h3 className="bi-card-title">Prediksi Revenue AI</h3>
+                  <p className="bi-card-subtitle">Garis putus-putus = prediksi AI untuk 5 bulan ke depan</p>
+                  <div className="bi-chart-placeholder">
+                    <div className="mock-line-chart">
+                      <div className="ml-y-axis">
+                        <span>600jt</span><span>450jt</span><span>300jt</span><span>150jt</span><span>0jt</span>
+                      </div>
+                      <div className="ml-graph-area">
+                        <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+                          <path d="M 0 160 L 50 155 L 100 140 L 150 150 L 200 130 L 250 140 L 300 110" fill="none" stroke="#047857" strokeWidth="2.5" />
+                          <circle cx="0" cy="160" r="4" fill="#047857" />
+                          <circle cx="50" cy="155" r="4" fill="#047857" />
+                          <circle cx="100" cy="140" r="4" fill="#047857" />
+                          <circle cx="150" cy="150" r="4" fill="#047857" />
+                          <circle cx="200" cy="130" r="4" fill="#047857" />
+                          <circle cx="250" cy="140" r="4" fill="#047857" />
+                          <circle cx="300" cy="110" r="4" fill="#047857" />
+                          <path d="M 300 110 L 350 90 L 400 80 L 450 70 L 500 40" fill="none" stroke="#d97706" strokeWidth="2.5" strokeDasharray="6 4" />
+                          <circle cx="350" cy="90" r="4" fill="#d97706" />
+                          <circle cx="400" cy="80" r="4" fill="#d97706" />
+                          <circle cx="450" cy="70" r="4" fill="#d97706" />
+                          <circle cx="500" cy="40" r="4" fill="#d97706" />
+                        </svg>
+                        <div className="ml-x-axis">
+                          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mei</span><span>Jun</span><span>Jul</span><span>Agu</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Des</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bi-chart-card">
+                  <h3 className="bi-card-title">Heatmap Transaksi per Wilayah</h3>
+                  <div className="bi-heatmap-list">
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Jawa Tengah</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-900" style={{width: '100%'}}>12.840</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Jawa Barat</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-800" style={{width: '82%'}}>10.520</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Jawa Timur</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-700" style={{width: '74%'}}>9.500</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">DKI Jakarta</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-600" style={{width: '68%'}}>8.720</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">DI. Yogyakarta</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-500" style={{width: '61%'}}>7.830</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Bali</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-400" style={{width: '43%'}}>5.520</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Sumatera Utara</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-300" style={{width: '35%'}}>4.490</div></div>
+                    </div>
+                    <div className="bi-hm-item">
+                      <span className="bi-hm-label">Kalimantan Timur</span>
+                      <div className="bi-hm-bar"><div className="bi-hm-fill bg-emerald-200 text-dark" style={{width: '22%'}}>2.820</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bi-insight-section">
+                <div className="bi-insight-header">
+                  <Brain size={22} color="#a855f7" /> <h3>AI Insight & Rekomendasi Strategi</h3>
+                </div>
+                <div className="bi-insight-grid">
+                  <div className="bi-in-card bg-green-light">
+                    <div className="bi-in-badge bg-green"><TrendingUp size={14} /> Tren</div>
+                    <h4 className="bi-in-title">Produk Kuliner Tumbuh Pesat</h4>
+                    <p className="bi-in-desc">Kategori kuliner menunjukkan pertumbuhan 34% MoM. Rekomendasi: tambah merchant kuliner dari Jawa Tengah.</p>
+                  </div>
+                  <div className="bi-in-card bg-yellow-light">
+                    <div className="bi-in-badge bg-yellow"><AlertTriangle size={14} /> Peringatan</div>
+                    <h4 className="bi-in-title">Stok Batik Hampir Habis</h4>
+                    <p className="bi-in-desc">12 merchant batik memiliki stok &lt;10 unit. Kirim notifikasi restok via WhatsApp AI segera.</p>
+                  </div>
+                  <div className="bi-in-card bg-purple-light">
+                    <div className="bi-in-badge bg-purple"><Lightbulb size={14} /> Peluang</div>
+                    <h4 className="bi-in-title">Flash Sale Sabtu Optimal</h4>
+                    <p className="bi-in-desc">Konversi tertinggi terjadi Sabtu pukul 19:00-21:00. Jadwalkan flash sale berikutnya pada waktu ini.</p>
                   </div>
                 </div>
               </div>
