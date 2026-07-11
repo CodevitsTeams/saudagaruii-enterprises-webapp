@@ -82,7 +82,7 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
               <ShoppingCart size={20} /> Masukkan Keranjang
             </button>
             <button 
-              onClick={() => { onAddToCart(product); onClose(); }} 
+              onClick={() => { if(onBuyNow) onBuyNow(product); else { onAddToCart(product); onClose(); } }} 
               style={{ flex: 1, padding: '14px', background: '#ee4d2d', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', transition: 'background 0.2s' }}
             >
               Beli Sekarang

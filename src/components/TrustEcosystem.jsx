@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Camera, Edit3, MessageSquare, Star, ArrowRight, ShieldCheck, TrendingUp, Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Camera, Edit3, MessageSquare, Star, ArrowRight, ShieldCheck, TrendingUp, Users, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import '../TrustEcosystem.css';
 
 export default function TrustEcosystem() {
@@ -201,6 +201,9 @@ export default function TrustEcosystem() {
             }
           ].map(testi => (
             <div className="testi-card" key={testi.id}>
+              <div className="testi-bg-icon">
+                <Quote size={130} strokeWidth={1} color="#cbd5e1" />
+              </div>
               <div className="testi-stars">
                 {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="#f59e0b" color="#f59e0b" />)}
               </div>

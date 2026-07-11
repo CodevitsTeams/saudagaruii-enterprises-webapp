@@ -1406,3 +1406,150 @@
   border-top: 1px solid #f1f5f9;
 }
 .notif-footer:hover { background: #f1f5f9; }
+
+/* Checkout Payment Styles */
+.payment-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.payment-options-list::-webkit-scrollbar { width: 4px; }
+.payment-options-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+.pay-option {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: white;
+  position: relative;
+}
+.pay-option:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.pay-option.selected {
+  border-color: var(--primary-color);
+  background: #f0fdf4;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
+}
+.pay-option input[type="radio"] {
+  display: none;
+}
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.pay-option.selected .custom-radio {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+.pay-option.selected .custom-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+.pay-option-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 4px;
+}
+.pay-option-title {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+.pay-option-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+.pay-option-icon {
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.va-icon {
+  font-weight: 800;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+.va-icon.bg-blue { background: #0066AE; } /* BCA */
+.va-icon.bg-yellow { background: #FFB703; color: #000; } /* Mandiri */
+.va-icon.bg-orange { background: #F15A23; } /* BNI */
+.va-icon.bg-blue-dark { background: #00529C; } /* BRI */
+.va-icon.bg-teal { background: #00A39D; } /* BSI */
+
+.va-instruction-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.va-bank-header {
+  background: white;
+  padding: 12px 16px;
+  border-bottom: 1px dashed #e2e8f0;
+  color: #0f172a;
+}
+.va-detail-row {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.va-detail-row:last-child {
+  border-bottom: none;
+}
+.va-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+.va-number-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+.btn-copy {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.btn-copy:hover {
+  text-decoration: underline;
+}

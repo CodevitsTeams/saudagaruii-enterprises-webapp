@@ -47,8 +47,11 @@
 /* Testimonials */
 .testimonial-section { padding: 0 1.5rem; }
 .testimonial-carousel { display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 2rem; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
-.testi-card { min-width: 320px; max-width: 350px; flex: 1; background: #fff; border-radius: 24px; padding: 2.5rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s; scroll-snap-align: center; }
+.testi-card { min-width: 320px; max-width: 350px; flex: 1; background: #fff; border-radius: 24px; padding: 2.5rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s; scroll-snap-align: center; position: relative; overflow: hidden; }
 .testi-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #f59e0b; }
+.testi-bg-icon { position: absolute; right: -20px; bottom: -20px; opacity: 0.1; transform: rotate(-15deg); pointer-events: none; z-index: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.testi-card:hover .testi-bg-icon { transform: scale(1.1) rotate(0deg); opacity: 0.2; }
+.testi-card > *:not(.testi-bg-icon) { position: relative; z-index: 1; }
 .testi-stars { display: flex; gap: 4px; }
 .testi-quote { font-size: 1rem; color: #334155; font-style: italic; line-height: 1.7; flex: 1; }
 .testi-author { display: flex; align-items: center; gap: 1rem; border-top: 1px solid #f1f5f9; padding-top: 1.5rem; }

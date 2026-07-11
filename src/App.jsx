@@ -17,7 +17,9 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [paymentStep, setPaymentStep] = useState('idle'); // idle, processing, qris, success
+  const [paymentStep, setPaymentStep] = useState('idle'); // idle, processing, select_payment, payment_instruction, success
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [vaDetails, setVaDetails] = useState({ number: '', name: '' });
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeFilter, setActiveFilter] = useState('Produk Terbaru');
   const [isNotifOpen, setIsNotifOpen] = useState(false);
@@ -989,7 +991,10 @@ function App() {
                 </div>
                 <button
                   className="btn-checkout"
-                  onClick={handleCheckout}
+                  onClick={() => {
+                    setPaymentStep('processing');
+                    setTimeout(() => setPaymentStep('select_payment'), 1000);
+                  }}
                   disabled={cartItems.length === 0}
                   style={{ opacity: cartItems.length === 0 ? 0.5 : 1, cursor: cartItems.length === 0 ? 'not-allowed' : 'pointer', border: 'none' }}
                 >
@@ -1003,33 +1008,170 @@ function App() {
                 <div className="payment-loading">
                   <div className="spinner"></div>
                   <h3>Memproses Pesanan...</h3>
-                  <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>Menghubungkan ke Payment Gateway</p>
+                  <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>Menyiapkan opsi pembayaran</p>
                 </div>
               )}
 
-              {paymentStep === 'qris' && (
-                <div className="payment-loading animate-fade-in">
-                  <h3>Scan QRIS</h3>
-                  <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>Buka aplikasi M-Banking atau e-Wallet Anda dan scan QR Code di bawah ini.</p>
-                  <div className="qris-code">
-                    [MOCK QRIS]
+              {paymentStep === 'select_payment' && (
+                <div className="payment-selection animate-fade-in">
+                  <div className="cart-header" style={{ padding: '0 0 1rem 0', borderBottom: '1px solid #f3f4f6', marginBottom: '1rem' }}>
+                    <h3 style={{ margin: 0 }}>Pilih Pembayaran</h3>
+                    <button className="close-btn" onClick={() => setPaymentStep('idle')}>&times;</button>
                   </div>
-                  <div className="cart-total" style={{ width: '100%', borderTop: '1px solid #f3f4f6', paddingTop: '1rem', marginTop: '1rem' }}>
-                    <span style={{ fontSize: '1rem', fontWeight: 600 }}>Total Bayar:</span>
-                    <span style={{ color: 'var(--primary-color)' }}>{formatPrice(cartTotal)}</span>
+                  <div className="payment-options-list">
+                    <label className={`pay-option ${paymentMethod === 'qris' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('qris')} checked={paymentMethod === 'qris'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">QRIS</span>
+                        <span className="pay-option-desc">GoPay, OVO, Dana, LinkAja, dsb.</span>
+                      </div>
+                      <div className="pay-option-icon" style={{ background: '#f8fafc', padding: '6px', borderRadius: '6px' }}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS" style={{ height: '14px' }} />
+                      </div>
+                    </label>
+                    <label className={`pay-option ${paymentMethod === 'va_bca' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('va_bca')} checked={paymentMethod === 'va_bca'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">BCA Virtual Account</span>
+                        <span className="pay-option-desc">Dicek otomatis</span>
+                      </div>
+                      <div className="pay-option-icon va-icon bg-blue">BCA</div>
+                    </label>
+                    <label className={`pay-option ${paymentMethod === 'va_mandiri' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('va_mandiri')} checked={paymentMethod === 'va_mandiri'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">Mandiri Virtual Account</span>
+                        <span className="pay-option-desc">Dicek otomatis</span>
+                      </div>
+                      <div className="pay-option-icon va-icon bg-yellow">M</div>
+                    </label>
+                    <label className={`pay-option ${paymentMethod === 'va_bni' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('va_bni')} checked={paymentMethod === 'va_bni'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">BNI Virtual Account</span>
+                        <span className="pay-option-desc">Dicek otomatis</span>
+                      </div>
+                      <div className="pay-option-icon va-icon bg-orange">BNI</div>
+                    </label>
+                    <label className={`pay-option ${paymentMethod === 'va_bri' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('va_bri')} checked={paymentMethod === 'va_bri'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">BRI Virtual Account</span>
+                        <span className="pay-option-desc">Dicek otomatis</span>
+                      </div>
+                      <div className="pay-option-icon va-icon bg-blue-dark">BRI</div>
+                    </label>
+                    <label className={`pay-option ${paymentMethod === 'va_bsi' ? 'selected' : ''}`}>
+                      <input type="radio" name="payment" onChange={() => setPaymentMethod('va_bsi')} checked={paymentMethod === 'va_bsi'} />
+                      <div className="custom-radio"></div>
+                      <div className="pay-option-info">
+                        <span className="pay-option-title">BSI Virtual Account</span>
+                        <span className="pay-option-desc">Dicek otomatis</span>
+                      </div>
+                      <div className="pay-option-icon va-icon bg-teal">BSI</div>
+                    </label>
                   </div>
+                  
+                  <div className="cart-total" style={{ width: '100%', borderTop: '1px solid #f3f4f6', paddingTop: '1rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '1rem', fontWeight: 600 }}>Total Tagihan:</span>
+                    <span style={{ color: 'var(--primary-color)', fontWeight: 800 }}>{formatPrice(cartTotal)}</span>
+                  </div>
+                  
+                  <button 
+                    className="btn-checkout" 
+                    disabled={!paymentMethod}
+                    style={{ marginTop: '1rem', opacity: !paymentMethod ? 0.5 : 1, width: '100%', border: 'none' }}
+                    onClick={() => {
+                      if(paymentMethod !== 'qris') {
+                        const randomNames = ['Budi Santoso', 'Siti Rahmawati', 'Andi Wijaya', 'Ahmad Rizal', 'Nadia Putri', 'Hendra Setiawan', 'Putri Diana'];
+                        setVaDetails({
+                          number: Math.floor(Math.random() * 9000000000) + 1000000000 + '',
+                          name: randomNames[Math.floor(Math.random() * randomNames.length)]
+                        });
+                      }
+                      setPaymentStep('processing_payment');
+                      setTimeout(() => setPaymentStep('payment_instruction'), 1000);
+                    }}
+                  >
+                    Bayar Sekarang
+                  </button>
+                </div>
+              )}
+
+              {paymentStep === 'processing_payment' && (
+                <div className="payment-loading">
+                  <div className="spinner"></div>
+                  <h3>Menghasilkan Instruksi Pembayaran...</h3>
+                </div>
+              )}
+
+              {paymentStep === 'payment_instruction' && (
+                <div className="payment-instruction animate-fade-in">
+                  <div className="cart-header" style={{ padding: '0 0 1rem 0', borderBottom: '1px solid #f3f4f6', marginBottom: '1rem' }}>
+                    <h3 style={{ margin: 0 }}>Instruksi Pembayaran</h3>
+                    <button className="close-btn" onClick={() => setPaymentStep('idle')}>&times;</button>
+                  </div>
+                  
+                  {paymentMethod === 'qris' ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem', textAlign: 'center', marginBottom: '1.5rem' }}>Scan QR Code ini menggunakan aplikasi M-Banking atau e-Wallet Anda.</p>
+                      <div className="qris-code-container" style={{ textAlign: 'center' }}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS Logo" style={{ height: '32px', marginBottom: '1rem' }} />
+                        <div style={{ background: '#fff', padding: '16px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', display: 'inline-block', border: '1px solid #f1f5f9' }}>
+                           <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=SAUDAGAR-DUMMY-QRIS" alt="QRIS Code" style={{ width: '200px', height: '200px' }} />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="va-instruction-box">
+                      <div className="va-bank-header">
+                        <span style={{ fontWeight: 700, fontSize: '1.1rem' }}>{paymentMethod.split('_')[1].toUpperCase()} Virtual Account</span>
+                      </div>
+                      <div className="va-detail-row">
+                        <span className="va-label">Nomor Virtual Account</span>
+                        <div className="va-number-box">
+                          <strong style={{ fontSize: '1.2rem', letterSpacing: '1px', fontFamily: 'monospace' }}>{vaDetails.number}</strong>
+                          <button className="btn-copy">Salin</button>
+                        </div>
+                      </div>
+                      <div className="va-detail-row">
+                        <span className="va-label">Nama Nasabah</span>
+                        <strong style={{ fontSize: '1.05rem' }}>{vaDetails.name}</strong>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="cart-total instruction-total" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px dashed #e2e8f0' }}>
+                    <span style={{ fontSize: '1rem', fontWeight: 600 }}>Total Pembayaran:</span>
+                    <span style={{ color: 'var(--primary-color)', fontSize: '1.4rem', fontWeight: 800 }}>{formatPrice(cartTotal)}</span>
+                  </div>
+
+                  <button className="btn-checkout btn-cek-status" onClick={() => setPaymentStep('success')} style={{ width: '100%', marginTop: '1.5rem', border: 'none' }}>
+                    Cek Status Pembayaran
+                  </button>
+                  <button className="btn-outline" onClick={() => setPaymentStep('select_payment')} style={{ width: '100%', padding: '12px', marginTop: '12px', borderRadius: '12px', border: '1px solid #e2e8f0', background: 'transparent', cursor: 'pointer', fontWeight: '600', color: '#64748b', transition: 'background 0.2s' }}>
+                    Ubah Metode Pembayaran
+                  </button>
                 </div>
               )}
 
               {paymentStep === 'success' && (
-                <div className="payment-success animate-fade-in">
-                  <div className="success-icon">
-                    <CheckCircle2 size={36} />
+                <div className="payment-success animate-fade-in" style={{ padding: '2rem 1rem', textAlign: 'center' }}>
+                  <div className="success-icon" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', color: '#10b981' }}>
+                    <CheckCircle2 size={56} />
                   </div>
-                  <h3>Pembayaran Berhasil!</h3>
-                  <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem', textAlign: 'center' }}>
+                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Pembayaran Berhasil!</h3>
+                  <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', textAlign: 'center', marginBottom: '2rem' }}>
                     Pesanan Anda telah dibayar dan sedang diteruskan ke merchant.
                   </p>
+                  <button className="btn-checkout" onClick={() => { setIsCartOpen(false); setPaymentStep('idle'); setCartItems([]); }} style={{ width: '100%', border: 'none' }}>
+                    Selesai Belanja
+                  </button>
                 </div>
               )}
             </div>
@@ -1041,6 +1183,13 @@ function App() {
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onAddToCart={addToCart}
+        onBuyNow={(prod) => {
+          addToCart(prod);
+          setSelectedProduct(null);
+          setPaymentMethod(null);
+          setIsCartOpen(true);
+          setPaymentStep('select_payment');
+        }}
       />
 
       {/* Floating Chat Assistant */}
