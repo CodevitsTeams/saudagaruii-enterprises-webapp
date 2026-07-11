@@ -8,6 +8,12 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
     <div className="admin-login-container">
       {/* LEFT PANEL */}
       <div className="admin-left-panel">
+        <div className="admin-glass-overlay"></div>
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200"
+          alt="Admin Background"
+          className="admin-bg-image"
+        />
         <div className="admin-left-content">
           <div className="admin-logo">
             <div className="admin-logo-icon">S</div>
@@ -84,14 +90,14 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
               <label>Password</label>
               <div className="input-wrapper">
                 <Lock size={18} className="input-icon-left" />
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  placeholder="********" 
-                  defaultValue="password123" 
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="********"
+                  defaultValue="password123"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="input-icon-right btn-toggle-pwd"
                   onClick={() => setShowPassword(!showPassword)}
                 >
@@ -107,8 +113,8 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
               <a href="#" className="forgot-pwd">Lupa password?</a>
             </div>
 
-            <button 
-              className="btn-login" 
+            <button
+              className="btn-login"
               onClick={() => {
                 if (onLogin) onLogin();
               }}
@@ -139,7 +145,7 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
 
             <div className="admin-footer-links" style={{ marginTop: '1.5rem', textAlign: 'center' }}>
               <span style={{ color: '#64748b', fontSize: '0.9rem' }}>
-                Belum mempunyai akun? <a href="#" onClick={(e) => { e.preventDefault(); if(onRegister) onRegister(); }} style={{ color: '#064e3b', fontWeight: '600', textDecoration: 'none' }}>Daftar di sini</a>
+                Belum mempunyai akun? <a href="#" onClick={(e) => { e.preventDefault(); if (onRegister) onRegister(); }} style={{ color: '#064e3b', fontWeight: '600', textDecoration: 'none' }}>Daftar di sini</a>
               </span>
             </div>
 

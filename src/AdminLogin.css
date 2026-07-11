@@ -9,11 +9,7 @@
 /* LEFT PANEL */
 .admin-left-panel {
   flex: 1;
-  background-color: #115e59;
-  background-image: linear-gradient(to right, rgba(17, 94, 89, 0.95), rgba(17, 94, 89, 0.7)),
-    url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');
-  background-size: cover;
-  background-position: center;
+  background-color: #000;
   color: #fff;
   padding: 4rem;
   display: flex;
@@ -23,17 +19,35 @@
   overflow: hidden;
 }
 
-/* Background gradient overlay for depth */
-.admin-left-panel::before {
-  content: '';
+.admin-bg-image {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(52, 211, 153, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(6, 78, 59, 0.4) 0%, transparent 50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
   z-index: 1;
+  transition: transform 10s ease-in-out;
+}
+
+.admin-left-panel:hover .admin-bg-image {
+  transform: scale(1.05);
+}
+
+.admin-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(6, 78, 59, 0.4) 100%);
+  z-index: 2;
+}
+
+/* Background gradient overlay for depth */
+.admin-left-panel::before {
+  display: none;
 }
 
 .admin-left-content {
