@@ -1817,3 +1817,41 @@
 .a-clicks, .a-orders, .a-conv { color: #334155; font-weight: 500; }
 .a-omzet { color: #0f766e; font-weight: 700; }
 .a-komisi { color: #d97706; font-weight: 700; }
+
+/* CRM & Marketing View */
+.crm-top-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+.crm-card {
+  background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.crm-card-title {
+  margin: 0 0 1.5rem 0; font-size: 1.1rem; font-weight: 700; color: #1d1d1f; display: flex; align-items: center; gap: 8px;
+}
+.seg-list { display: flex; flex-direction: column; gap: 1.2rem; }
+.seg-item { display: flex; align-items: center; justify-content: space-between; }
+.seg-label { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 0.9rem; width: 220px; color: #334155; }
+.seg-dot { width: 12px; height: 12px; border-radius: 50%; }
+.seg-bar-bg { flex: 1; height: 8px; background: #f1f5f9; border-radius: 4px; margin: 0 1.5rem; position: relative; }
+.seg-bar-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
+.seg-value { font-family: monospace; font-weight: 700; font-size: 0.9rem; width: 60px; text-align: right; color: #0f172a; }
+
+.wa-list { display: flex; flex-direction: column; }
+.wa-item { padding: 1.2rem 0; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: flex-start; }
+.wa-item:first-child { padding-top: 0; }
+.wa-item:last-child { border-bottom: none; padding-bottom: 0; }
+.wa-info h4 { margin: 0 0 4px 0; font-weight: 600; font-size: 0.95rem; color: #0f172a; }
+.wa-info p { margin: 0; font-size: 0.8rem; color: #64748b; }
+.wa-status { font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+.wa-status.aktif { color: #047857; background: #ecfdf5; }
+.wa-status.terkirim { color: #475569; background: #f1f5f9; }
+.btn-broadcast { width: 100%; padding: 14px; background: #047857; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1.5rem; font-size: 0.95rem; transition: background 0.2s; }
+.btn-broadcast:hover { background: #0369a1; }
+
+.ai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.ai-card { background: #f8fafc; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 6px; border: 1px solid rgba(0,0,0,0.04); transition: transform 0.2s; cursor: pointer; }
+.ai-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); }
+.ai-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.ai-title { font-weight: 700; font-size: 0.95rem; color: #0f172a; margin: 0; }
+.ai-trigger { font-size: 0.8rem; color: #64748b; margin: 0; }
+.ai-status { font-size: 0.85rem; font-weight: 600; color: #10b981; margin-top: 8px; }

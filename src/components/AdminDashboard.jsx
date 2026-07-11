@@ -211,7 +211,7 @@ export default function AdminDashboard() {
               <span>Affiliate</span>
             </div>
           </a>
-          <a href="#" className="nav-item">
+          <a href="#" className={`nav-item ${activeView === 'crm' ? 'active' : ''}`} onClick={() => setActiveView('crm')}>
             <div className="nav-item-left">
               <Target size={20} className="nav-icon" />
               <span>CRM & Marketing</span>
@@ -1516,6 +1516,141 @@ export default function AdminDashboard() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+          ) : activeView === 'crm' ? (
+            <div className="crm-view animate-fade-in">
+              <div className="dashboard-page-header">
+                <div className="page-header-text">
+                  <h2>CRM & Marketing</h2>
+                  <p>Segmentasi pelanggan, broadcast WA, & automation</p>
+                </div>
+              </div>
+
+              <div className="crm-top-grid">
+                {/* Segmentasi Card */}
+                <div className="crm-card">
+                  <h3 className="crm-card-title">Segmentasi Pelanggan</h3>
+                  <div className="seg-list">
+                    <div className="seg-item">
+                      <div className="seg-label"><div className="seg-dot" style={{background: '#047857'}}></div> Pembeli Aktif</div>
+                      <div className="seg-bar-bg"><div className="seg-bar-fill" style={{background: '#047857', width: '85%'}}></div></div>
+                      <div className="seg-value">12.840</div>
+                    </div>
+                    <div className="seg-item">
+                      <div className="seg-label"><div className="seg-dot" style={{background: '#94a3b8'}}></div> Pembeli Tidak Aktif (&gt;60h)</div>
+                      <div className="seg-bar-bg"><div className="seg-bar-fill" style={{background: '#94a3b8', width: '55%'}}></div></div>
+                      <div className="seg-value">8.210</div>
+                    </div>
+                    <div className="seg-item">
+                      <div className="seg-label"><div className="seg-dot" style={{background: '#d97706'}}></div> Repeat Customer</div>
+                      <div className="seg-bar-bg"><div className="seg-bar-fill" style={{background: '#d97706', width: '65%'}}></div></div>
+                      <div className="seg-value">9.430</div>
+                    </div>
+                    <div className="seg-item">
+                      <div className="seg-label"><div className="seg-dot" style={{background: '#8b5cf6'}}></div> High Value (&gt;Rp 500k)</div>
+                      <div className="seg-bar-bg"><div className="seg-bar-fill" style={{background: '#8b5cf6', width: '25%'}}></div></div>
+                      <div className="seg-value">3.210</div>
+                    </div>
+                    <div className="seg-item">
+                      <div className="seg-label"><div className="seg-dot" style={{background: '#0ea5e9'}}></div> Affiliate</div>
+                      <div className="seg-bar-bg"><div className="seg-bar-fill" style={{background: '#0ea5e9', width: '8%'}}></div></div>
+                      <div className="seg-value">890</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* WA Blast Card */}
+                <div className="crm-card">
+                  <h3 className="crm-card-title">🚨 WA Blast Terjadwal</h3>
+                  <div className="wa-list">
+                    <div className="wa-item">
+                      <div className="wa-info">
+                        <h4>Flash Sale Weekend</h4>
+                        <p>Repeat Customer · 10 Jul, 08:00</p>
+                        <p style={{marginTop: '2px'}}>9.430 terkirim · 68% dibuka</p>
+                      </div>
+                      <div className="wa-status terkirim">Terkirim</div>
+                    </div>
+                    <div className="wa-item">
+                      <div className="wa-info">
+                        <h4>Welcome New Member</h4>
+                        <p>Pembeli Baru · Otomatis</p>
+                      </div>
+                      <div className="wa-status aktif">Aktif</div>
+                    </div>
+                    <div className="wa-item">
+                      <div className="wa-info">
+                        <h4>Keranjang Ditinggalkan</h4>
+                        <p>Cart Abandoner · Otomatis +1h</p>
+                      </div>
+                      <div className="wa-status aktif">Aktif</div>
+                    </div>
+                    <div className="wa-item">
+                      <div className="wa-info">
+                        <h4>Ulang Tahun Pelanggan</h4>
+                        <p>All Customer · Otomatis H-1</p>
+                      </div>
+                      <div className="wa-status aktif">Aktif</div>
+                    </div>
+                  </div>
+                  <button className="btn-broadcast">+ Buat Broadcast Baru</button>
+                </div>
+              </div>
+
+              {/* AI Marketing Automation */}
+              <div className="crm-card" style={{marginTop: '1.5rem'}}>
+                <h3 className="crm-card-title">🤖 AI Marketing Automation</h3>
+                <div className="ai-grid">
+                  <div className="ai-card">
+                    <div className="ai-icon">👋</div>
+                    <div className="ai-title">Welcome Message</div>
+                    <div className="ai-trigger">Trigger: Daftar baru</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">🛒</div>
+                    <div className="ai-title">Keranjang Ditinggalkan</div>
+                    <div className="ai-trigger">Trigger: +1 jam</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">🎂</div>
+                    <div className="ai-title">Ulang Tahun</div>
+                    <div className="ai-trigger">Trigger: H-1</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">⭐</div>
+                    <div className="ai-title">Review Request</div>
+                    <div className="ai-trigger">Trigger: Setelah selesai</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">🔄</div>
+                    <div className="ai-title">Repeat Order</div>
+                    <div className="ai-trigger">Trigger: 30 hari pasca beli</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">💸</div>
+                    <div className="ai-title">Flash Sale Alert</div>
+                    <div className="ai-trigger">Trigger: Event promo</div>
+                    <div className="ai-status" style={{color: '#94a3b8'}}>Non-aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">😴</div>
+                    <div className="ai-title">Re-engagement</div>
+                    <div className="ai-trigger">Trigger: &gt;60 hari non-aktif</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
+                  <div className="ai-card">
+                    <div className="ai-icon">🆕</div>
+                    <div className="ai-title">Produk Baru</div>
+                    <div className="ai-trigger">Trigger: Kategori favorit</div>
+                    <div className="ai-status">Aktif</div>
+                  </div>
                 </div>
               </div>
             </div>
