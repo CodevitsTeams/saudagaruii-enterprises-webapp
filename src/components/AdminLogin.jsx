@@ -79,14 +79,14 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
 
         <div className="admin-form-container">
           <div className="admin-form-box">
-            <h2>Sign in Admin</h2>
+            <h2>Sign in Account</h2>
             <p className="subtitle">Masuk ke panel admin Saudagar UII Marketplace</p>
 
             <div className="form-group">
               <label>Email Admin</label>
               <div className="input-wrapper">
                 <Mail size={18} className="input-icon-left" />
-                <input type="email" placeholder="admin@saudagaruii.id" defaultValue="admin@saudagaruii.id" style={{ paddingLeft: '2.5rem' }} />
+                <input type="email" placeholder="admin@saudagaruii.co.id" defaultValue="admin@saudagaruii.co.id" style={{ paddingLeft: '2.5rem' }} />
               </div>
             </div>
 
@@ -96,8 +96,8 @@ export default function AdminLogin({ onBack, onLogin, onRegister }) {
                 <Lock size={18} className="input-icon-left" />
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="********"
-                  defaultValue="password123"
+                  placeholder="Masukkan kata sandi anda"
+                  defaultValue="saudagaruii@2026"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 />
                 <button
