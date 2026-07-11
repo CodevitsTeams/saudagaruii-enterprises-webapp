@@ -323,7 +323,7 @@ function App() {
                 <div className="watermark-bg-icon">
                   <Volume2 size={100} strokeWidth={1} color="#cbd5e1" />
                 </div>
-                <div className="prof-card-icon bg-light-blue"><Volume2 size={20} color="#2563eb" /></div>
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=300&q=80" alt="Info" className="prof-card-image" style={{ objectFit: 'cover', padding: 0 }} />
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill blue">INFO</span> 4 Jun 2026</div>
                   <h3>Verifikasi Merchant Dipercepat</h3>
@@ -336,7 +336,7 @@ function App() {
                 <div className="watermark-bg-icon">
                   <Star size={100} strokeWidth={1} color="#cbd5e1" />
                 </div>
-                <div className="prof-card-icon bg-light-yellow"><Star size={20} color="#d97706" /></div>
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=80" alt="Promo" className="prof-card-image" style={{ objectFit: 'cover', padding: 0 }} />
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill yellow">PROMO</span> 2 Jun 2026</div>
                   <h3>Program Saudagar Mahasiswa UII</h3>
@@ -349,7 +349,7 @@ function App() {
                 <div className="watermark-bg-icon">
                   <Sparkles size={100} strokeWidth={1} color="#cbd5e1" />
                 </div>
-                <div className="prof-card-icon bg-light-purple"><Sparkles size={20} color="#9333ea" /></div>
+                <img src="https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&w=300&q=80" alt="Update AI" className="prof-card-image" style={{ objectFit: 'cover', padding: 0 }} />
                 <div className="prof-card-content">
                   <div className="prof-meta"><span className="prof-pill purple">UPDATE AI</span> 1 Jun 2026</div>
                   <h3>Fitur AI Photo Enhancement Hadir</h3>
@@ -412,6 +412,22 @@ function App() {
                     <div className="st-name">Cashback 10% Min. Blj Rp150RB s/d 5RB koin</div>
                     <div className="st-progress-bg">
                       <div className="st-progress-fill" style={{ width: '60%' }}></div>
+                    </div>
+                    <div className="st-date">Hingga: 31.01.2026</div>
+                  </div>
+                  <div className="st-divider"></div>
+                  <div className="st-right">
+                    <button className="st-btn">Klaim</button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="shopee-ticket-wrapper">
+                <div className="shopee-ticket">
+                  <div className="st-left">
+                    <div className="st-name">Gratis Ongkir Min. Blj Rp0</div>
+                    <div className="st-progress-bg">
+                      <div className="st-progress-fill" style={{ width: '85%' }}></div>
                     </div>
                     <div className="st-date">Hingga: 31.01.2026</div>
                   </div>

@@ -981,6 +981,14 @@ body {
   flex-shrink: 0;
 }
 
+.prof-card-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .bg-light-blue {
   background-color: #eff6ff;
 }
